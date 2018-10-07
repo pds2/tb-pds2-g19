@@ -1,0 +1,70 @@
+tUTORIAL E COMANDOS PARA MEXER NO GIT (windows):
+///instalaçao
+**********************************************************************************
+obs:
+git != github
+
+git e- uma ferramneta que é usada no github(e em outros sites tambem) 
+que possilita escrita  e gerenciamneto do codigo de um projeto.
+
+***********************************************************************************
+Download do git bash no windows:
+
+esse é um terminal que funciona tantos com os comandos do cmd padrao
+do windows quanto comandos do linux.
+
+va ao seguinte site baixe a versao mais "adequada" ao seu windows:
+
+https://git-scm.com/download/win
+
+na instalaçao vai dando accept(acho que nao tem muita coisa que possa acrescentar 
+mas vc pode ir lendos as opçoes se quiser).
+
+
+
+//comandos
+
+ao instalar vc precisara configurar o usuaria global.
+
+abra o git bash e escreva os comandos:
+
+$ git config --global user.name "seu nome de usuario"
+$ git config --global user.email nome@email.com //email que vc usou para fazer sua conta no github
+
+
+aperte o botao """ clone or download""""  e copie a URL
+
+no seu computador escolha uma pasta para ficar os codigos  do repositorio
+
+no git bash caminhe ate essa pasta(EXEMPLO: para ir para downloads faça $ cd "D:\Downloads")
+dica: pelo gerenciador de arquivos é possível copiar o caminho da pasta desejada.
+
+ao escolher a pasta digite o comando:
+
+$ git clone URL
+
+assim os arquivos do repositorio serao copiados para o seu computador.
+
+para adicionar algum arquivo apenas arraste o arquivo desejado para a pasta com o nome o repositorio(tb-pds2-g19)
+digite o comando :
+
+$git add .
+
+serao adicionados todas as mudanaças feitas na pasta
+
+em seguida digite o comando :
+
+$ git commit -m "nome do commit"
+
+"nome do commit" é algum nome que identifique a mudança feita no repositorio .(Por exemplo foi adicionada uma funaço que embaralha as cartas)
+
+por fim para de fato mudar o repositorio faça o comando :
+
+$ git push
+
+pronto a mudança do repositorio foi feita.
+Caso a pasta ja esteja clonada mas os outros integrantes modifiquem o reposirio para atualizar a pasta na sua maquina basta fazer :
+
+$ git pull
+
+e apartir dai fazer as modificaçoes que achar necessarias.
