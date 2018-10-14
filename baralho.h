@@ -16,8 +16,7 @@
 			//METODOS
 			int get_tamanho() const;
 			void embaralhar();
-			void print_baralho() const;
-		
+			void print_baralho() const;	
 	};
 	
 
