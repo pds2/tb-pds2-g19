@@ -15,6 +15,7 @@ class Carta{
 		//METODOS
 		std::string get_cor() const;
 		std::string get_valor() const;
+		void print_carta() const;
 };
 
 

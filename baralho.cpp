@@ -18,7 +18,11 @@
 		return baralho.size();
 	}
 	void Baralho::embaralhar(){}
-	void Baralho::print_baralho() const{}
+	void Baralho::print_baralho() const{
+		int tam = this->get_tamanho();
+		for (int i = 0;i < tam;i++)
+			baralho[i]->print_carta();
+	}
 
 
 

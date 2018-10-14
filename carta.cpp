@@ -1,3 +1,4 @@
+#include <iostream>
 #include "carta.h"
 
 	Carta::Carta(){}
@@ -12,4 +13,7 @@
 	}
 	std::string Carta::get_valor() const{
 		return valor;
+	}
+	void Carta::print_carta() const{
+		std::cout << valor << " " << cor << std::endl;
 	}
