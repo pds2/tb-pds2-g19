@@ -3,18 +3,34 @@
 #ifndef CARTA_H
 #define CARTA_H
 
+
+#define red      'r'
+#define yellow   'y'
+#define blue     'b'
+#define green    'g'
+#define especial 'e'
+
+#define pular    '@'
+#define reverter '#'
+#define compra_2 '$'
+
+#define compra_4 '%'
+#define coringa  '&'
+	
+
+
 class Carta{
 
 	private:
-		std::string cor;
-		std::string valor;
+		char cor;
+		char valor;
 	public:
 		Carta();
-		Carta(std::string color , std::string value);
+		Carta(char color , char	 value);
 		~Carta();
 		//METODOS
-		std::string get_cor() const;
-		std::string get_valor() const;
+		char get_cor() const;
+		char get_valor() const;
 		void print_carta() const;
 };
 

@@ -3,9 +3,11 @@
 
 #include <string>
 #include <vector>
-#include "carta.h"
-#include "pilha.h"
 	
+	class Carta;
+	class Baralho;
+	class Pilha;
+
 	class Jogador{
 		private:
 			std::string nome;

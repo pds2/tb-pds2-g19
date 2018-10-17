@@ -1,4 +1,6 @@
 #include "jogador.h"
+#include "carta.h"
+#include "pilha.h"
 
 	Jogador::Jogador(){}
 	Jogador::Jogador(std::string name){

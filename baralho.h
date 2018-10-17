@@ -1,12 +1,10 @@
 #include <string>
 #include <vector>
-#include "carta.h"
-
 
 #ifndef BARALHO_H
 #define BARALHO_H
 
-
+	class Carta;
 	class Baralho{
 		private:
 			std::vector<Carta*> baralho;
