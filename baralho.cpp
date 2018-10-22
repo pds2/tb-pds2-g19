@@ -2,6 +2,7 @@
 #include "carta.h"
 #include "baralho.h"
 
+	
 
 	Baralho::Baralho(){
 		Carta *ptr1;
@@ -46,7 +47,18 @@
 		return baralho.size();
 	}
 	
-	void Baralho::embaralhar(){}
+	void Baralho::embaralhar(){
+		srand (time(NULL));
+		//The modern algorithm of Fisher–Yates shuffle para embaralhar https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle
+		int j = 0;
+		Carta *aux;
+		for (int i = baralho.size() - 1;i > 1;i--){
+			j = rand() % (i + 1);
+			aux = baralho[j];
+			baralho[j] = baralho[i];
+			baralho[i] = aux;
+		}
+	}
 	
 	void Baralho::print_baralho() const{
 		int tam = this->get_tamanho();
@@ -55,6 +67,12 @@
 			baralho[i]->print_carta();
 		}
 	}
-
+	void Baralho::remove_fim(){
+		baralho[baralho.size() - 1] = nullptr;
+		baralho.pop_back();
+	}
+	Carta* Baralho::get_ultima_carta(){
+		return baralho[baralho.size() - 1];
+	}
 
 

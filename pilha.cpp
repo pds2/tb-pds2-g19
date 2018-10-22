@@ -19,6 +19,6 @@
 			(*it)->print_carta();	
 	}
 
-	void  Pilha::set_jogador(Jogador *a){
+	void  Pilha::set_jogador_atual(Jogador *a){
 		this->atual = a;
 	}

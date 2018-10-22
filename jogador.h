@@ -20,8 +20,9 @@
 			std::string get_nome() const;
 			int num_cartas() const;	
 			void compra_carta(Baralho &baralho);
-			void jogada (Carta *carta_jogada,Pilha &pilha);
+			void jogada (int pos,Pilha &pilha);
 			void print_mao() const;
+
 	};
 
 

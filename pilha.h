@@ -21,7 +21,7 @@
 			int get_tamanho() const;
 			void re_embaralhar(Baralho &b);
 			void print_pilha ();
-			void set_jogador(Jogador *a);
+			void set_jogador_atual(Jogador *a);
 
 	};
 
