@@ -40,8 +40,13 @@
 		}
 		
 	}
-	Baralho::~Baralho(){}
-	
+	Baralho::~Baralho(){
+		 while (!baralho.empty()){
+		 	  delete baralho[baralho.size() - 1];
+		 	  baralho.pop_back();
+		 }
+	}
+
 	//METODOS
 	int Baralho::get_tamanho() const{
 		return baralho.size();

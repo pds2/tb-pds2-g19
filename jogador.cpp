@@ -7,7 +7,12 @@
 	Jogador::Jogador(std::string name){
 		nome = name;
 	}
-	Jogador::~Jogador(){}
+	Jogador::~Jogador(){
+		for(int i = 0;i < mao.size() ;i++){
+			delete mao[mao.size() - 1];
+			mao.pop_back();
+		}
+	}
 	//METODOS
 	std::string Jogador::get_nome() const{
 		return nome;
@@ -22,7 +27,11 @@
 		}
 	}
 
-	void Jogador::jogada (int pos,Pilha &pilha){}
+	void Jogador::jogada (int pos,Pilha &pilha){
+		pilha.inserir_fim(mao[pos]);
+		mao[pos] = nullptr;
+		mao.erase(mao.begin() + pos);
+	}
 	
 	void Jogador::print_mao() const	{
 		int tam = this->num_cartas();

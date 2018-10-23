@@ -22,6 +22,7 @@
 			void re_embaralhar(Baralho &b);
 			void print_pilha ();
 			void set_jogador_atual(Jogador *a);
+			void inserir_fim(Carta *a);
 
 	};
 
