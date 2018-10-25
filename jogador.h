@@ -6,7 +6,7 @@
 	
 	class Carta;
 	class Baralho;
-	class Pilha;
+	class Jogo;
 
 	class Jogador{
 		private:
@@ -18,9 +18,10 @@
 			~Jogador();
 			//METODOS
 			std::string get_nome() const;
+			void set_nome(std::string name);
 			int num_cartas() const;	
 			void compra_carta(Baralho &baralho);
-			void jogada (int pos,Pilha &pilha);
+			Carta* jogada (Carta *atual);
 			void print_mao() const;
 
 	};

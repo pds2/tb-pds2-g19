@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstdlib>
 #include "carta.h"
 #include "baralho.h"
 
@@ -38,7 +39,10 @@
 				baralho.push_back(ptr1);
 			}
 		}
-		
+		this->embaralhar();
+		this->embaralhar();
+		this->embaralhar();
+		this->print_baralho();
 	}
 	Baralho::~Baralho(){
 		 while (!baralho.empty()){

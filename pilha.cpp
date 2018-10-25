@@ -24,9 +24,9 @@
 			(*rit)->print_carta();	
 	}
 
-	void  Pilha::set_jogador_atual(Jogador *a){
-		this->atual = a;
-	}
+	// void  Pilha::set_jogador_atual(Jogador *a){
+	// 	this->atual = a;
+	// }
 	void Pilha::inserir_fim(Carta *a){
 		pilha_cartas.push_back(a);
 	}
