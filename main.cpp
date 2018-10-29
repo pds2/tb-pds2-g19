@@ -7,7 +7,10 @@
 int main(){
 
 	Jogo UNO;
-	UNO.f_rodada();
+	for (int i = 0;i < 500;i++){
+		UNO.f_rodada();
+	}
+
 	
 	return 0;
 }

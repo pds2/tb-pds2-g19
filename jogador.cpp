@@ -30,7 +30,7 @@
 			baralho.remove_fim();
 		}
 	}
-
+	
 	Carta* Jogador::jogada (Carta *atual){
 		std::cout<<"Escolha a posicao da carta de sua mao para jogar :" << std::endl;
 		this->print_mao();
@@ -53,7 +53,19 @@
 	void Jogador::print_mao() const	{
 		int tam = this->num_cartas();
 		std::cout << nome << " : "<< std::endl;
-		for (int i = 0 ; i < tam ; i++)
+		std::cout<<std::endl;
+		for (int i = 0 ; i < tam ; i++){
+			std::cout<< "  " << i << " ";
 			mao[i]->print_carta();
+		}
 		std::cout <<std::endl;
+	}
+	int Jogador::cartas_jogaveis(Carta *atual) const{
+		int _cartas_jogaveis = 0;
+		for (int i = 0;i < this->num_cartas();i++){
+			if (mao[i]->get_cor() == especial || mao[i]->get_cor() == atual->get_cor() || mao[i]->get_valor() == atual->get_valor() ){
+				_cartas_jogaveis++;
+			}
+		}
+		return _cartas_jogaveis;
 	}

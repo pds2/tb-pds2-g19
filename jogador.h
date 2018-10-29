@@ -23,6 +23,7 @@
 			void compra_carta(Baralho &baralho);
 			Carta* jogada (Carta *atual);
 			void print_mao() const;
+			int cartas_jogaveis(Carta *atual) const;
 
 	};
 

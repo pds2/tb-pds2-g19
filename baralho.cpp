@@ -17,19 +17,23 @@
 			for(int j = 0; j < 10;j++){
 				ptr1 = new Carta(cores[i],j + 48);
 				baralho.push_back(ptr1);
+
 			}
 
 			for(int j = 1; j < 10;j++){
 				ptr1 = new Carta(cores[i],j + 48);
 				baralho.push_back(ptr1);
+
 			}
 			for(int j = 0; j < 3;j++){
 				ptr1 = new Carta(cores[i],especiais_com_cores[j]);
 				baralho.push_back(ptr1);
+
 			}
 			for(int j = 0; j < 3;j++){
 				ptr1 = new Carta(cores[i],especiais_com_cores[j]);
 				baralho.push_back(ptr1);
+
 			}	
 
 		}
@@ -37,12 +41,13 @@
 			for(int j = 0; j < 4;j++){
 				ptr1 = new Carta(especial,especiais[i]);
 				baralho.push_back(ptr1);
+
 			}
 		}
 		this->embaralhar();
 		this->embaralhar();
-		this->embaralhar();
-		this->print_baralho();
+		//this->embaralhar();
+		//this->print_baralho();
 	}
 	Baralho::~Baralho(){
 		 while (!baralho.empty()){

@@ -1,3 +1,4 @@
+
 #include <string>
 
 #ifndef CARTA_H
@@ -32,6 +33,7 @@ class Carta{
 		char get_cor() const;
 		char get_valor() const;
 		void print_carta() const;
+		void set_cor_coringa();
 };
 
 

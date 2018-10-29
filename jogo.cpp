@@ -13,6 +13,7 @@
 		this->rodada = 0;
 
 		std::string nome_jogador; 
+		std::cout<<std::endl;
 		std::cout << "digite o numero de jogadores : \n" << std::endl;
 		std::cin >> this->n_jogadores;
 
@@ -60,13 +61,72 @@
 	// 	pilha_de_cartas.push_back(a);
 	// }
 	void Jogo::f_rodada(){
-		Carta *jogada;
-		std::cout<< "Carta autal : " << std::endl;
-		pilha_de_cartas.back()->print_carta();
+		system("clear");
+		system("clear");
+		Carta *carta_atual =  pilha_de_cartas.back();
+		std::cout << "Carta atual : " << std::endl;
+		carta_atual->print_carta();
 		
-		jogada = jogadores[ jogador_atual ]->jogada( pilha_de_cartas.back() );
+		if (jogadores[ jogador_atual ] ->cartas_jogaveis(carta_atual) == 0 && jogadores[ jogador_atual ]->num_cartas() > 0 ){
+			std::cout << "Voce nao possui cartas para jogar e teve comprar uma " << std::endl;
+			jogadores[ jogador_atual ] ->compra_carta(*baralho);
+		}
+		else{
+			if (jogadores[ jogador_atual ]->num_cartas() == 0 ){
+				std::cout << "VOCE GANHOU " <<std::endl;
+				return;
+			}
+			Carta *escolhida = jogadores[ jogador_atual ]->jogada( carta_atual );
 
-		pilha_de_cartas.push_back(jogada);
-		jogador_atual = (jogador_atual + sentido)/n_jogadores;
-		rodada++;                                                                                                              
+			pilha_de_cartas.push_back(escolhida);
+
+
+
+			int proximo_jogador = 0;
+			switch (escolhida->get_valor()){
+				case pular :
+					jogador_atual = (jogador_atual + sentido) % n_jogadores;
+	 				break;
+
+	 			case reverter:
+	 				sentido = -sentido;
+	 				break;
+
+	 			case compra_2:
+	 				
+	 				proximo_jogador = (jogador_atual + sentido) % n_jogadores;
+	 				if (proximo_jogador < 0)
+						proximo_jogador += n_jogadores;
+
+	 				for(int i = 0;i < 2;i++){
+			 			jogadores[proximo_jogador]->compra_carta(*baralho);
+	 				}
+	 				break;
+
+	 			case compra_4 :
+	 				
+	 				proximo_jogador = (jogador_atual + sentido) % n_jogadores;
+	 				if (proximo_jogador < 0)
+						proximo_jogador += n_jogadores;
+
+	 				for(int i = 0;i < 4;i++){
+			 			jogadores[proximo_jogador]->compra_carta(*baralho);
+	 				}
+			 		escolhida->set_cor_coringa();
+	 				break;
+
+	 			case coringa:
+	 				escolhida->set_cor_coringa();
+	 				break;
+				 
+			}
+			                   
+
+		}
+		jogador_atual = (jogador_atual + sentido) % n_jogadores;
+			
+		if (jogador_atual < 0)
+			jogador_atual += n_jogadores;
+			
+		rodada++;                                                                                           
 	}
