@@ -9,14 +9,17 @@
 		private:
 			std::vector<Carta*> baralho;
 		public:
+			//CONTRUTOR E DESTRUTOR
 			Baralho();
 			~Baralho();
+			
 			//METODOS
 			int get_tamanho() const;
 			void embaralhar();
 			void print_baralho() const;
 			void remove_fim();
-			Carta* get_ultima_carta();	
+			Carta* get_ultima_carta();
+			void retira_especial_do_topo();	
 	};
 	
 

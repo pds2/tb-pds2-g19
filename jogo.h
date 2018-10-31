@@ -17,7 +17,7 @@
 			std::vector <Jogador*> jogadores;
 			Baralho *baralho;
 			int sentido;
-			unsigned int jogador_atual;
+			int jogador_atual;
 			unsigned int n_jogadores;
 			unsigned int rodada;
 		public:
@@ -25,11 +25,12 @@
 			~Jogo();
 			//METODOS
 			int get_tamanho() const;
-			//void re_embaralhar(Baralho &b);
 			void print_Jogo (); 
-			//void set_jogador_atual(Jogador *a);
-			//void inserir_fim(Carta *a);
-			void f_rodada();
+			int f_rodada();
+			void efeitos_de_carta(Carta *atual);
+			int cnt_compra_2();
+			int cnt_compra_4();
+			void passa_rodada();
 			
 
 

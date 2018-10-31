@@ -6,58 +6,71 @@
 	Carta::Carta(char color , char value){
 		cor = color;
 		valor = value;
+		jogador_alvo = -1;
 	}
 	Carta::~Carta(){}
+	
 	//METODOS
+
 	char Carta::get_cor() const{
 		return cor;
 	}
 	char Carta::get_valor() const{
 		return valor;
 	}
+	
+	void Carta::set_cor_coringa(){
+		//metodo destinado asa carta que o jogador pode escolher  a cor
+		char c;
+		if (cor == ESPECIAL){
+			std::cout << " Escolha a cor que deseja : " << std::endl;
+			std::cin >> c;
+			cor = c;
+		}
+	}
 	void Carta::print_carta() const{
 	
 		switch (this->cor){
 		 	
-		 	case red:
+		 	case RED:
 		 		std::cout << "  red   ";
 		 		break;
 
-		 	case yellow:
-		 		std::cout << "  yellow ";
+		 	case YELLOW:
+		 		std::cout << " yellow ";
 		 		break;
 
-		 	case blue:
+		 	case BLUE:
 		 		std::cout << "  blue  ";
 		 		break;
 
-		 	case green:
+		 	case GREEN:
 		 		std::cout << "  green  ";
 		 		break;
 
-		 	case especial:
+		 	case ESPECIAL:
 		 		std::cout << "  especial ";
 		 		break;
 		}
 		switch (this->valor){
 			
-			case pular:
+			case PULAR:
 				std::cout << " pular";
 				break;
 
-			case reverter:
+			case REVERTER:
 				std::cout << " reverter  ";
 				break;
 
-			case compra_2:
+			case COMPRA_2:
 				std::cout << " compra 2  " ;
 				break;
 
-			case compra_4:
+			case COMPRA_4  :
 				std::cout << " compra 4 " ;
 				break;
 
-			case coringa:
+			case CORINGA:
 				std::cout << " coringa  " ;
 				break;
 
@@ -69,22 +82,9 @@
 		std::cout << std::endl; 
 	}
 		
-	void Carta::set_cor_coringa(){
-		char c;
-		if (cor == especial){
-			std::cout << " Escolha a cor que deseja : " << std::endl;
-			std::cin >> c;
-			cor = c;
-		}
-	}
-
-
-
-
-
-
-		// std::cout << cor ;
-
-		// std::cout << valor << " " ;
-
-	
+int Carta::get_jogador_alvo() const{
+	return this->jogador_alvo;
+}
+void Carta::set_jogador_alvo(int pos){
+	this->jogador_alvo = pos;
+}
