@@ -71,13 +71,10 @@
 			_jogadores[ _jogador_atual ]->compra_carta(*_baralho);
 			//caso tenha comprado uma carta jogavel(valida)
 			if (_jogadores[ _jogador_atual ] ->cartas_jogaveis(carta_atual) != 0 ){
-				f_rodada();
-				return 1;
+				return f_rodada();
 			}
-			else{
-				this->passa_rodada();
-				return 1;
-			}
+			this->passa_rodada();
+			return 1;
 		}
 		else if (carta_atual->get_valor() == COMPRA_2 &&_jogadores[this->_jogador_atual]->qtd_compra_2() > 0 && carta_atual->get_jogador_alvo() == _jogador_atual){
 			escolhida =_jogadores[_jogador_atual]->rebate_compra_2();
