@@ -13,13 +13,13 @@
 
 	class Jogo{
 		private:
-			std::list <Carta*> pilha_de_cartas;
-			std::vector <Jogador*> jogadores;
-			Baralho *baralho;
-			int sentido;
-			int jogador_atual;
-			unsigned int n_jogadores;
-			unsigned int rodada;
+			std::list <Carta*> _pilha_de_cartas;
+			std::vector <Jogador*> _jogadores;
+			Baralho * _baralho;
+			int _sentido;
+			int _jogador_atual;
+			unsigned int _n_jogadores;
+			
 		public:
 			Jogo();
 			~Jogo();

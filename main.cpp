@@ -8,13 +8,6 @@ int main(){
 
 	 Jogo UNO;
 	 while ( UNO.f_rodada() ){}
-	
-	// Baralho baralho;
-	// Jogador a;
-	// a.compra(a);
-
-	
-
-	
+		
 	return 0;
 }

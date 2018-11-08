@@ -23,9 +23,9 @@
 class Carta{
 
 	private:
-		char cor;
-		char valor;
-		int jogador_alvo;
+		char _cor;
+		char _valor;
+		int _jogador_alvo;
 	public:
 		//CONTRUTORES E DESTRUTOR 
 		Carta();

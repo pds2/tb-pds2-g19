@@ -37,7 +37,8 @@
 		this->print_mao();
 		unsigned int pos;
 		std::cin >> pos;
-		
+	    //TRATAR EXCECOES DE ERRO DE USUARIO 
+
 		Carta *to_return = mao[pos];
 		
 		if (to_return->get_cor() == ESPECIAL || to_return->get_cor() == atual->get_cor() || to_return->get_valor() == atual->get_valor()){
@@ -64,13 +65,13 @@
 	}
 	int Jogador::cartas_jogaveis(Carta *atual) const{
 		//retorna a quantidade de cartas jogaveis pelo jogador tendo em base a carta jogada pelo ultimo jogador
-		int c_j = 0;
+		int n_cartas_jogaveis = 0;
 		for (int i = 0;i < this->num_cartas();i++){
 			if (mao[i]->get_cor() == ESPECIAL || mao[i]->get_cor() == atual->get_cor() || mao[i]->get_valor() == atual->get_valor() ){
-				c_j++;
+				n_cartas_jogaveis++;
 			}
 		}
-		return c_j;
+		return n_cartas_jogaveis;
 	}
 	int Jogador::qtd_compra_2() const{
 		//retorna a quantidade de caratas +4 na mao de um jogador
@@ -111,6 +112,7 @@
 
 			std::cout<<"Escolha a posicao da carta +2(COMPRA_2) de sua mao para jogar :" << std::endl;
 			std::cin >> pos;
+			
 			Carta *to_return = mao[pos];
 		    
 		    //caso o usuario erre na digitaçao
