@@ -19,7 +19,10 @@
 			void print_baralho() const;
 			void remove_fim();
 			Carta* get_ultima_carta();
-			void retira_especial_do_topo();	
+			void retira_especial_do_topo();
+			//////////
+			void adiciona_carta(Carta& carta);
+			//////////
 	};
 	
 

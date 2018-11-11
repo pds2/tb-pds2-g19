@@ -100,4 +100,8 @@
 			this->embaralhar();
 		}
 	}
-
+	//////////
+	void Baralho::adiciona_carta(Carta& carta){
+		baralho.push_back(carta);
+	}
+	//////////

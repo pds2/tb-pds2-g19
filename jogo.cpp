@@ -64,6 +64,12 @@
 		Carta *carta_atual =  _pilha_de_cartas.back();
 		std::cout << "Carta atual :  " ;
 		carta_atual->print_carta();
+		
+		//////////
+		if(_baralho->get_tamanho() == 0){
+			this->repoe_baralho();
+		}
+		//////////
 
 
 		if (_jogadores[ _jogador_atual ] ->cartas_jogaveis(carta_atual) == 0 ){
@@ -171,7 +177,18 @@
 		if (this->_jogador_atual < 0)
 			this->_jogador_atual += this->_n_jogadores;
 	}
-
+	//////////
+	void Jogo::repoe_baralho(){
+		Carta *carta_atual =  _pilha_de_cartas.back();
+		_pilha_de_cartas.pop_back();
+		while(_pilha_de_cartas.size() > 0){			
+			_baralho->adiciona_carta(*_pilha_de_cartas.back());
+			_pilha_de_cartas.pop_back();
+		}
+		_baralho->embaralhar();
+		_pilha_de_cartas.push_back(carta_atual);		
+	}
+	//////////
 
 
 

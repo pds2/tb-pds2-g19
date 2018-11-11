@@ -31,6 +31,9 @@
 			int cnt_compra_2();
 			int cnt_compra_4();
 			void passa_rodada();
+			//////////
+			void repoe_baralho();
+			//////////
 			
 
 
