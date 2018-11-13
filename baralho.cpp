@@ -6,7 +6,7 @@
 #include "baralho.h"
 
 #define N_CORES 4
-#define N_VALORES 10
+#define N_VALORES 2
 #define N_ESPECIAIS_COLORIDAS 3
 #define N_ESPECIAIS 4
 
@@ -33,7 +33,7 @@
 				baralho.push_back(ptr1);
 
 			}
-			//iNCLUINDO PULAR REVERTER COMPRA_2	 X2
+			// iNCLUINDO PULAR REVERTER COMPRA_2	 X2
 			for(int j = 0; j < N_ESPECIAIS_COLORIDAS;j++){
 				ptr1 = new Carta(cores[i],especiais_com_cores[j]);
 				baralho.push_back(ptr1);
@@ -42,14 +42,14 @@
 
 			}
 		}
-		//INCLUINDO  8 ESPECIAS COMPRA_4 CORINGA 
-		for (int i = 0; i < 2;i++){
-			for(int j = 0; j < N_ESPECIAIS;j++){
-				ptr1 = new Carta(ESPECIAL,especiais[i]);
-				baralho.push_back(ptr1);
+		// INCLUINDO  8 ESPECIAS COMPRA_4 CORINGA 
+		//for (int i = 0; i < 2;i++){
+		//	for(int j = 0; j < N_ESPECIAIS;j++){
+		// 		ptr1 = new Carta(ESPECIAL,especiais[i]);
+		// 		baralho.push_back(ptr1);
 
-			}
-		}
+		// 	}
+		//}
 		this->embaralhar();
 	}
 	Baralho::~Baralho(){
@@ -103,7 +103,7 @@
 		}
 	}
 	//////////
-	void Baralho::adiciona_carta(Carta& carta){
-		baralho.push_back(&carta);
+	void Baralho::adiciona_carta(Carta* carta){
+		baralho.push_back(carta);
 	}
 	//////////

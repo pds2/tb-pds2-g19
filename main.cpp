@@ -1,8 +1,10 @@
  #include <iostream>
+#include <cstdlib>
 #include "carta.h"
 #include "baralho.h"
 #include "jogador.h"
 #include "jogo.h"
+
 
 int main(){
 

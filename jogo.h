@@ -18,8 +18,8 @@
 			Baralho * _baralho;
 			int _sentido;
 			int _jogador_atual;
-			unsigned int _n_jogadores;
-			unsigned int _n_bots;
+			int _n_jogadores;
+			int _n_bots;
 			
 		public:
 			Jogo();

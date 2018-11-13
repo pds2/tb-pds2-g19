@@ -3,6 +3,7 @@
 #include "carta.h"
 #include "jogo.h"
 #include "baralho.h"
+#include <limits.h>
 
 	Jogador::Jogador(){}
 	Jogador::Jogador(std::string name){
@@ -35,12 +36,20 @@
 		//retorna  o ponteiro da carta jogada pelo jogador 
 		std::cout<<"Escolha a posicao da carta de sua mao para jogar : " << std::endl;
 		this->print_mao();
-		unsigned int pos;
+		 int pos;
 		std::cin >> pos;
 
 		//EXECAO DE ENTRADA INVALIDA TRATADA
-		while(pos < 0 || pos > this->num_cartas()-1){
-			std::cout<<"A posicao escolhida nao existe, favor escolher entre 0 e " << this->num_cartas()-1 << std::endl;
+		while( std::cin.fail() || pos < 0 || pos > this->num_cartas()-1  ){
+			if( std::cin.fail()){
+				std::cin.clear();
+				std::cin.ignore(INT_MAX,'\n');
+				std::cout<< "Jogada invalida "<<std::endl;
+			}
+
+			if (pos < 0 || pos > this->num_cartas()-1 )	{
+				std::cout<<"A posicao escolhida nao existe, favor escolher entre 0 e " << this->num_cartas()-1 << std::endl;
+			}	
 			std::cin >> pos;
 		}
 
@@ -53,7 +62,7 @@
 			return to_return;
 		}
 		else{
-			std::cout<<"ERRRO carta errada" << std::endl;
+			std::cout<<"ERRO carta errada" << std::endl;
 			return this->jogada(atual);
 		}
 	}
@@ -115,6 +124,15 @@
 			}
 			std::cout <<std::endl;	
 
+			// while( std::cin.fail() || pos < 0 || pos > this->num_cartas()-1  ){
+			// if( std::cin.fail()){
+			// 	std::cin.clear();
+			// 	std::cin.ignore(INT_MAX,'\n');
+			// 	std::cout<< "Jogada invalida "<<std::endl;
+			// }
+
+
+
 			std::cout<<"Escolha a posicao da carta +2(COMPRA_2) de sua mao para jogar :" << std::endl;
 			std::cin >> pos;
 			
@@ -122,7 +140,7 @@
 		    
 		    //caso o usuario erre na digitaçao
 			while (to_return->get_valor() != COMPRA_2){
-				std::cout<<"ERRO ERRO ERRO ERRO escolha uma carta +2 :" << std::endl;
+				std::cout<<"Erro escolha uma carta +2 :" << std::endl;
 				std::cin >> pos;
 				to_return = mao[pos];
 			}
