@@ -37,7 +37,12 @@
 		this->print_mao();
 		unsigned int pos;
 		std::cin >> pos;
-	    //TRATAR EXCECOES DE ERRO DE USUARIO 
+
+		//EXECAO DE ENTRADA INVALIDA TRATADA
+		while(pos < 0 || pos > this->num_cartas()-1){
+			std::cout<<"A posicao escolhida nao existe, favor escolher entre 0 e " << this->num_cartas()-1 << std::endl;
+			std::cin >> pos;
+		}
 
 		Carta *to_return = mao[pos];
 		

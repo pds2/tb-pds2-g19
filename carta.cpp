@@ -1,4 +1,4 @@
-	#include <iostream>
+#include <iostream>
 #include "carta.h"
 #include "baralho.h"
 
@@ -20,12 +20,17 @@
 	}
 	
 	void Carta::set_cor_coringa(){
-		//metodo destinado asa carta que o jogador pode escolher  a cor
+		//metodo destinado as cartas que o jogador pode escolher  a cor
 		char c;
 		if (this->_cor == ESPECIAL){
-			std::cout << " Escolha a cor que deseja : (r,b,g,y)" << std::endl;
+			std::cout << " Escolha a cor que deseja entre (r,b,g,y) : " << std::endl;
 			std::cin >> c;
-			//TRATAR EXCECOES DE ERRO DE USUARIO 
+
+			//EXCECAO DE ENTRADA INVALIDA TRATADA
+			while(c != 'r' && c != 'b' && c != 'g' && c != 'y'){
+				std::cout << " Cor invalida escolhida, escolha entre (r,b,g,y) : " << std::endl;
+				std::cin >> c;
+			}
 
 			this->_cor = c;
 		}

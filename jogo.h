@@ -19,6 +19,7 @@
 			int _sentido;
 			int _jogador_atual;
 			unsigned int _n_jogadores;
+			unsigned int _n_bots;
 			
 		public:
 			Jogo();

@@ -1,5 +1,7 @@
 #include <iostream>
 #include <cstdlib>
+#include <time.h>
+
 #include "carta.h"
 #include "baralho.h"
 
@@ -102,6 +104,6 @@
 	}
 	//////////
 	void Baralho::adiciona_carta(Carta& carta){
-		baralho.push_back(carta);
+		baralho.push_back(&carta);
 	}
 	//////////

@@ -14,12 +14,19 @@
 
 		std::string nome_jogador; 
 		std::cout<<std::endl;
-		std::cout << "digite o numero de jogadores : \n" << std::endl;
+		std::cout << "Digite o numero de jogadores e de bots separados por espaco :" << std::endl;
 		std::cin >> this->_n_jogadores;
-		//TRATAR EXCECOES DE ERRO DE USUARIO 
+		std::cin >> this->_n_bots;
+
+		//EXECAO DE ENTRADA INVALIDA TRATADA
+		while((_n_jogadores + _n_bots) < 2 || (_n_jogadores + _n_bots) > 10){
+			std::cout << "O jogo deve ter de 2 a 10 jogadores, escolha novos valores" << std::endl;
+			std::cin >> this->_n_jogadores;
+			std::cin >> this->_n_bots;
+		}
 
 		for (unsigned int i = 0;i < _n_jogadores;i++){
-			std::cout << " digite o nome do jogador  sem espaço " << i + 1 << " : " << std::endl;
+			std::cout << "Digite o nome do jogador " << i + 1 << " sem espaco : " << std::endl;
 			std::cin >> nome_jogador;
 			//TRATAR EXCECOES DE ERRO DE USUARIO 
 			Jogador *novo = new Jogador(nome_jogador);
@@ -94,7 +101,7 @@
 		}
 		
 		if(_jogadores[_jogador_atual]->num_cartas() == 0){
-			std::cout << "Acabou "<<_jogadores[_jogador_atual]->get_nome() << " é o campeao" << std::endl;
+			std::cout << "Acabou "<<_jogadores[_jogador_atual]->get_nome() << " e o campeao" << std::endl;
 			return 0;
 		}
 		_pilha_de_cartas.push_back(escolhida);
