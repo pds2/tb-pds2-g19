@@ -7,7 +7,7 @@
 	class Carta;
 	class Baralho{
 		private:
-			std::vector<Carta*> baralho;
+			std::vector<Carta*> _baralho;
 		public:
 			//CONTRUTOR E DESTRUTOR
 			Baralho();

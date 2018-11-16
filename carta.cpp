@@ -1,6 +1,7 @@
 #include <iostream>
 #include "carta.h"
 #include "baralho.h"
+#include <limits.h>
 
 	Carta::Carta(){}
 	Carta::Carta(char color , char value){
@@ -18,7 +19,6 @@
 	char Carta::get_valor() const{
 		return _valor;
 	}
-	
 	void Carta::set_cor_coringa(){
 		//metodo destinado as cartas que o jogador pode escolher  a cor
 		char c;
@@ -27,12 +27,19 @@
 			std::cin >> c;
 
 			//EXCECAO DE ENTRADA INVALIDA TRATADA
-			while(c != 'r' && c != 'b' && c != 'g' && c != 'y'){
+			while(std::cin.fail() || (c != 'r' && c != 'b' && c != 'g' && c != 'y')){
+				if( std::cin.fail()){
+					std::cin.clear();
+					std::cin.ignore(INT_MAX,'\n');
+				}
 				std::cout << " Cor invalida escolhida, escolha entre (r,b,g,y) : " << std::endl;
 				std::cin >> c;
 			}
 
 			this->_cor = c;
+		}
+		else {
+			std::cout << "Programador : Tal carta nao pode mudar de cor durante a partida"<<std::endl;
 		}
 	}
 	void Carta::print_carta() const{
@@ -96,3 +103,9 @@ int Carta::get_jogador_alvo() const{
 void Carta::set_jogador_alvo(int pos){
 	this->_jogador_alvo = pos;
 }
+
+void Carta::tira_cor_especial(){
+		//Quando o baralho for reembaralhado as cartas especiais devem ter suas cores voltadas para ESPECIAL
+		if ((_valor == CORINGA || _valor == COMPRA_4) && _cor != ESPECIAL )
+			_cor = ESPECIAL;
+}	

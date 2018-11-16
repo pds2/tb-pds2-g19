@@ -37,10 +37,13 @@ class Carta{
 		char get_cor() const;
 		char get_valor() const;
 		void set_cor_coringa();
-
 		void print_carta() const;
 		int get_jogador_alvo() const;
 		void set_jogador_alvo(int pos);
+
+		void tira_cor_especial();
+
+
 };
 
 

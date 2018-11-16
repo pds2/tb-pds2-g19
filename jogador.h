@@ -9,17 +9,17 @@
 	class Jogo;
 
 	class Jogador{
-		private:
-			std::string nome;
-			std::vector<Carta*> mao;
+		protected:
+			std::string _nome;
+			std::vector<Carta*> _mao;
 		public:
 			Jogador();
-			Jogador(std::string name);
+			Jogador(std::string nome);
 			~Jogador();
 			
 			//METODOS
 			std::string get_nome() const;
-			void set_nome(std::string name);
+			void set_nome(std::string nome);
 			int num_cartas() const;	
 			void compra_carta(Baralho &baralho);
 			Carta* jogada (Carta *atual);

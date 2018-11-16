@@ -16,6 +16,7 @@
 		std::string nome_jogador; 
 		std::cout<<std::endl;
 		std::cout << "Digite o numero de jogadores e de bots separados por espaco :" << std::endl;
+
 		std::cin >> this->_n_jogadores;
 		std::cin >> this->_n_bots;
 
@@ -61,23 +62,20 @@
 		return _pilha_de_cartas.size();
 	}
 
-
-
 	void Jogo::print_Jogo(){
 		//std::list<Carta*>::iterator it  = _pilha_de_cartas.end();
 		for (std::list<Carta*>::reverse_iterator rit = _pilha_de_cartas.rbegin(); rit!=_pilha_de_cartas.rend(); ++rit)
 			(*rit)->print_carta();	
 	}
 
-	int Jogo::f_rodada(){
-		//this->print_Jogo();
+	int Jogo::rodada(){
 		Carta *escolhida;
 		Carta *carta_atual =  _pilha_de_cartas.back();
-		std::cout << "Carta atual " ;
+		std::cout << "Carta atual : " ;
 		carta_atual->print_carta();
 		
-		std::cout << "Numero de cartas na pilha  " <<_pilha_de_cartas.size();
-		std::cout << "  Numero de cartas no baralho  " << _baralho->get_tamanho() << std::endl;
+		std::cout << "Numero de cartas na pilha ==  " <<_pilha_de_cartas.size();
+		std::cout << "  Numero de cartas no baralho  ==  " << _baralho->get_tamanho() << std::endl;
 	
 		//////////
 		if(_baralho->get_tamanho() == 0){
@@ -91,7 +89,7 @@
 			_jogadores[ _jogador_atual ]->compra_carta(*_baralho);
 			//caso tenha comprado uma carta jogavel(valida)
 			if (_jogadores[ _jogador_atual ] ->cartas_jogaveis(carta_atual) != 0 ){
-				return f_rodada();
+				return rodada();
 			}
 			this->passa_rodada();
 			return 1;
@@ -137,17 +135,12 @@
 	 			case COMPRA_2:
 						escolhida->set_jogador_alvo(proximo_jogador);
 						if (_jogadores[proximo_jogador]->qtd_compra_2() == 0 ){
-
 							int n_compra_2 = this->cnt_compra_2();
-
 							if(n_compra_2*2 > _baralho->get_tamanho())
 								this->repoe_baralho();
-
-
 							for(int i = 0;i <2*n_compra_2 ;i++)
 				 				this->_jogadores[proximo_jogador]->compra_carta(*_baralho);
 				 			this->_jogador_atual = proximo_jogador;
-
 						}
 						else{}
 	 				 break;
@@ -204,12 +197,12 @@
 	}
 	//////////
 	void Jogo::repoe_baralho(){
-		std::cout<<"ACABOU AS CARTAS rembaralhei" <<std::endl;
+		std::cout<<"Acabou as carta e a pilha foi reembaralhada" <<std::endl;
 		Carta *carta_atual =  _pilha_de_cartas.back();
 		_pilha_de_cartas.pop_back();
 		
-		while(_pilha_de_cartas.size() > 0){			
-			 
+		while(_pilha_de_cartas.size() > 0){		
+			_pilha_de_cartas.back()->tira_cor_especial();//tira as cores das cartas COMPRA_4 e CORINGA voltando a ter a cor ESPECIAL		 	
 			_baralho->adiciona_carta(_pilha_de_cartas.back());
 			_pilha_de_cartas.pop_back();
 		}
@@ -217,7 +210,9 @@
 		_pilha_de_cartas.push_back(carta_atual);		
 	}
 	//////////
-
+	void Jogo::inicia_jogo(){
+		while (this->rodada()){}
+	}
 
 
 

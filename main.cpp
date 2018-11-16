@@ -1,5 +1,4 @@
- #include <iostream>
-#include <cstdlib>
+#include <iostream>
 #include "carta.h"
 #include "baralho.h"
 #include "jogador.h"
@@ -9,7 +8,7 @@
 int main(){
 
 	 Jogo UNO;
-	 while ( UNO.f_rodada() ){}
+	 UNO.inicia_jogo();
 		
 	return 0;
 }

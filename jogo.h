@@ -27,14 +27,15 @@
 			//METODOS
 			int get_tamanho() const;
 			void print_Jogo (); 
-			int f_rodada();
+			int rodada();
 			void efeitos_de_carta(Carta *atual);
 			int cnt_compra_2();
 			int cnt_compra_4();
 			void passa_rodada();
-			//////////
 			void repoe_baralho();
-			//////////
+
+			void inicia_jogo();
+		
 			
 
 

@@ -6,28 +6,28 @@
 #include <limits.h>
 
 	Jogador::Jogador(){}
-	Jogador::Jogador(std::string name){
-		nome = name;
+	Jogador::Jogador(std::string nome){
+		_nome = nome;
 	}
 	Jogador::~Jogador(){
-		for(unsigned int i = 0;i < mao.size() ;i++){
-			delete mao[mao.size() - 1];
-			mao.pop_back();
+		while(!_mao.empty()){
+			delete _mao[_mao.size() - 1];
+			_mao.pop_back();
 		}
 	}
 	//METODOS
 	std::string Jogador::get_nome() const{
-		return nome;
+		return _nome;
 	}
-	void Jogador::set_nome(std::string name){
-		nome = name;
+	void Jogador::set_nome(std::string nome){
+		_nome = nome;
 	}
 	int Jogador::num_cartas() const{
-		return mao.size();
+		return _mao.size();
 	}
 	void Jogador::compra_carta(Baralho &baralho){
 		if(baralho.get_tamanho() > 0 ){			
-			mao.push_back(baralho.get_ultima_carta());
+			_mao.push_back(baralho.get_ultima_carta());
 			baralho.remove_fim();
 		}
 	}
@@ -46,19 +46,16 @@
 				std::cin.ignore(INT_MAX,'\n');
 				std::cout<< "Jogada invalida "<<std::endl;
 			}
-
-			if (pos < 0 || pos > this->num_cartas()-1 )	{
-				std::cout<<"A posicao escolhida nao existe, favor escolher entre 0 e " << this->num_cartas()-1 << std::endl;
-			}	
+			std::cout<<"A posicao escolhida nao existe, favor escolher entre 0 e " << this->num_cartas()-1 << std::endl;	
 			std::cin >> pos;
 		}
 
-		Carta *to_return = mao[pos];
+		Carta *to_return = _mao[pos];
 		
 		if (to_return->get_cor() == ESPECIAL || to_return->get_cor() == atual->get_cor() || to_return->get_valor() == atual->get_valor()){
 			//primeiro  o ponteiroé  apontado para nullptr para que o metodo erase() nao apague o objeto alocado no heap  
-			mao[pos] = nullptr;
-			mao.erase(mao.begin() + pos);
+			_mao[pos] = nullptr;
+			_mao.erase(_mao.begin() + pos);
 			return to_return;
 		}
 		else{
@@ -69,11 +66,11 @@
 	
 	void Jogador::print_mao() const	{
 		int tam = this->num_cartas();
-		std::cout << nome << " : "<< std::endl;
+		std::cout << _nome << " : "<< std::endl;
 		std::cout<<std::endl;
 		for (int i = 0 ; i < tam ; i++){
 			std::cout<< "  " << i << " ";
-			mao[i]->print_carta();
+			_mao[i]->print_carta();
 		}
 		std::cout <<std::endl;
 	}
@@ -81,7 +78,7 @@
 		//retorna a quantidade de cartas jogaveis pelo jogador tendo em base a carta jogada pelo ultimo jogador
 		int n_cartas_jogaveis = 0;
 		for (int i = 0;i < this->num_cartas();i++){
-			if (mao[i]->get_cor() == ESPECIAL || mao[i]->get_cor() == atual->get_cor() || mao[i]->get_valor() == atual->get_valor() ){
+			if (_mao[i]->get_cor() == ESPECIAL || _mao[i]->get_cor() == atual->get_cor() || _mao[i]->get_valor() == atual->get_valor() ){
 				n_cartas_jogaveis++;
 			}
 		}
@@ -91,7 +88,7 @@
 		//retorna a quantidade de caratas +4 na mao de um jogador
 		int  n_compra_2= 0;
 		for (int i = 0;i < this->num_cartas();i++){
-			if ( mao[i]->get_valor() == COMPRA_2 ){
+			if ( _mao[i]->get_valor() == COMPRA_2 ){
 				n_compra_2++;
 			}
 		}
@@ -101,7 +98,7 @@
 		//retorna a quantidade de caratas +2 na mao de um jogador
 		int  n_compra_4= 0;
 		for (int i = 0;i < this->num_cartas();i++){
-			if ( mao[i]->get_valor() == COMPRA_4   ){
+			if ( _mao[i]->get_valor() == COMPRA_4   ){
 				n_compra_4++;
 			}
 		}
@@ -113,40 +110,34 @@
 			int tam = this->num_cartas();
 			int pos = 0;
 			
-			std::cout << nome << " : "<< std::endl;
+			std::cout << _nome << " : "<< std::endl;
 			std::cout<<std::endl;
 			
 			for (int i = 0 ; i < tam ; i++){
-				if(mao[i]->get_valor() == COMPRA_2){	
+				if(_mao[i]->get_valor() == COMPRA_2){	
 					std::cout<< "  " << i << " ";
-					mao[i]->print_carta();
+					_mao[i]->print_carta();
 				}	
 			}
 			std::cout <<std::endl;	
-
-			// while( std::cin.fail() || pos < 0 || pos > this->num_cartas()-1  ){
-			// if( std::cin.fail()){
-			// 	std::cin.clear();
-			// 	std::cin.ignore(INT_MAX,'\n');
-			// 	std::cout<< "Jogada invalida "<<std::endl;
-			// }
-
-
-
 			std::cout<<"Escolha a posicao da carta +2(COMPRA_2) de sua mao para jogar :" << std::endl;
 			std::cin >> pos;
 			
-			Carta *to_return = mao[pos];
-		    
-		    //caso o usuario erre na digitaçao
-			while (to_return->get_valor() != COMPRA_2){
-				std::cout<<"Erro escolha uma carta +2 :" << std::endl;
+			//tratamento de entrada do usuario
+			while( std::cin.fail() || pos < 0 || pos > this->num_cartas()-1 || _mao[pos]->get_valor() != COMPRA_2){
+				if( std::cin.fail()){
+					std::cin.clear();
+					std::cin.ignore(INT_MAX,'\n');
+					std::cout<< "Jogada invalida carta inexistente. Jogue novamente"<<std::endl;
+				}
+				if (_mao[pos]->get_valor() != COMPRA_2){
+					std::cout<<"Erro :a carta escolhida nao e uma carta +2 .Jogue novamente" << std::endl;
+				}
 				std::cin >> pos;
-				to_return = mao[pos];
 			}
 
-			mao[pos] = nullptr;
-			mao.erase(mao.begin() + pos);
+			Carta *to_return = _mao[pos];
+			_mao.erase(_mao.begin() + pos);
 			return to_return;
 	}
 	Carta* Jogador::rebate_compra_4(){
@@ -154,30 +145,34 @@
 			int tam = this->num_cartas();
 			int pos = 0;
 			
-			std::cout << nome << " : "<< std::endl;
+			std::cout << _nome << " : "<< std::endl;
 			std::cout<<std::endl;
 		
 			for (int i = 0 ; i < tam ; i++){
-				if(mao[i]->get_valor() == COMPRA_4  ){	
+				if(_mao[i]->get_valor() == COMPRA_4  ){	
 					std::cout<< "  " << i << " ";
-					mao[i]->print_carta();
+					_mao[i]->print_carta();
 				}	
 			}
 			std::cout <<std::endl;	
-
 			std::cout<<"Escolha a posicao da carta +4(COMPRA_4) de sua mao para jogar :" << std::endl;
 			std::cin >> pos;
-			Carta *to_return = mao[pos];
-		   
-		    //caso o usuario erre na digitaçao
-			while (to_return->get_valor() != COMPRA_4  ){
-				std::cout<<"ERRO ERRO ERRO ERRO escolha uma carta +4:" << std::endl;
-				std::cin >> pos;
-				to_return = mao[pos];
-			}
 			
-			mao[pos] = nullptr;
-			mao.erase(mao.begin() + pos);
+			//tratamento de entrada do usuario
+			while( std::cin.fail() || pos < 0 || pos > this->num_cartas()-1 || _mao[pos]->get_valor() != COMPRA_4){
+				if( std::cin.fail()){
+					std::cin.clear();
+					std::cin.ignore(INT_MAX,'\n');
+					std::cout<< "Jogada invalida, carta inexistente. Jogue novamente"<<std::endl;
+				}
+				if (_mao[pos]->get_valor() !=COMPRA_4){
+					std::cout<<"Erro :a carta escolhida nao e uma carta +4 .Jogue novamente" << std::endl;
+				}
+				std::cin >> pos;
+			}
+			Carta *to_return = _mao[pos];		
+
+			_mao.erase(_mao.begin() + pos);
 			return to_return;
 	}
 	
