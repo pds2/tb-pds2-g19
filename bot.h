@@ -2,8 +2,6 @@
 #define BOT_H 
 #include "jogador.h"
 	
-
-
 	class Bot : public Jogador {
 		public:
 			Bot(std::string nome);
