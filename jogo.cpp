@@ -6,6 +6,7 @@
 
 #define MAO_INICIAL 7
 #define MAX_NAME 80
+#define MAX_PLAYERS 10
 
 	Jogo::Jogo(){
 		this->_baralho = new Baralho;
@@ -26,13 +27,11 @@
 			std::cin >> this->_n_jogadores;
 			std::cin >> this->_n_bots;
 		}
-
+		std::cin.ignore();
 		for (unsigned int i = 0;i < _n_jogadores;i++){
 			std::cout << "Digite o nome do jogador " << i + 1 << std::endl;
-			// std::cin.clear();
-			std::cin.ignore();
+
 			std::getline(std::cin,nome_jogador);
-			
 			//TRATAR EXCECOES DE ERRO DE USUARIO 
 			Jogador *novo = new Jogador(nome_jogador);
 			for (int j = 0;j < MAO_INICIAL;j++){
@@ -40,6 +39,7 @@
 			}
 			novo->print_mao();
 			this->_jogadores.push_back(novo);
+			std::cin.clear();
 		}
 		_baralho->retira_especial_do_topo();
 		_pilha_de_cartas.push_back(_baralho->get_ultima_carta());
@@ -83,7 +83,6 @@
 		}
 		//////////
 
-
 		if (_jogadores[ _jogador_atual ] ->cartas_jogaveis(carta_atual) == 0 ){
 			std::cout << _jogadores[ _jogador_atual ]->get_nome() <<" NAO POSSUI CARTAS PARA JOGAR E TEVE COMPRAR UMA " << std::endl;
 			_jogadores[ _jogador_atual ]->compra_carta(*_baralho);
@@ -94,11 +93,11 @@
 			this->passa_rodada();
 			return 1;
 		}
-		else if (carta_atual->get_valor() == COMPRA_2 &&_jogadores[this->_jogador_atual]->qtd_compra_2() > 0 && carta_atual->get_jogador_alvo() == _jogador_atual){
-			escolhida =_jogadores[_jogador_atual]->rebate_compra_2();
+		else if (carta_atual->get_valor() == COMPRA_2 &&_jogadores[this->_jogador_atual]->qtd_de_carta(COMPRA_2) > 0 && carta_atual->get_jogador_alvo() == _jogador_atual){
+			escolhida =_jogadores[_jogador_atual]->rebate(COMPRA_2);
 		}
-		else if (carta_atual->get_valor() == COMPRA_4   &&_jogadores[this->_jogador_atual]->qtd_compra_4() > 0 && carta_atual->get_jogador_alvo() == _jogador_atual){
-			escolhida =_jogadores[_jogador_atual]->rebate_compra_4();
+		else if (carta_atual->get_valor() == COMPRA_4   &&_jogadores[this->_jogador_atual]->qtd_de_carta(COMPRA_4) > 0 && carta_atual->get_jogador_alvo() == _jogador_atual){
+			escolhida =_jogadores[_jogador_atual]->rebate(COMPRA_4);
 		} 
 		else{
 			escolhida =_jogadores[ _jogador_atual ]->jogada( carta_atual );
@@ -134,8 +133,8 @@
 
 	 			case COMPRA_2:
 						escolhida->set_jogador_alvo(proximo_jogador);
-						if (_jogadores[proximo_jogador]->qtd_compra_2() == 0 ){
-							int n_compra_2 = this->cnt_compra_2();
+						if (_jogadores[proximo_jogador]->qtd_de_carta(COMPRA_2) == 0 ){   //qtd_compra_2()
+							int n_compra_2 = this->cnt_de_carta(COMPRA_2);//                 cnt_compra_2();
 							if(n_compra_2*2 > _baralho->get_tamanho())
 								this->repoe_baralho();
 							for(int i = 0;i <2*n_compra_2 ;i++)
@@ -147,46 +146,32 @@
 
 	 			case COMPRA_4:
 	 					escolhida->set_jogador_alvo(proximo_jogador);
-						if (_jogadores[proximo_jogador]->qtd_compra_4() == 0 ){
-							
-							int n_compra_4 = this->cnt_compra_4();
-
+						_jogadores[_jogador_atual]->escolhe_cor(escolhida);
+						if (_jogadores[proximo_jogador]->qtd_de_carta(COMPRA_4) == 0 ){ //qtd_compra_4()
+							int n_compra_4 = this->cnt_de_carta(COMPRA_4);//          cnt_compra_4();
 							if(n_compra_4*4 > _baralho->get_tamanho())
 								this->repoe_baralho();
-
 							for(int i = 0;i < 4*n_compra_4;i++)
-
 				 				this->_jogadores[proximo_jogador]->compra_carta(*_baralho);
 				 			this->_jogador_atual = proximo_jogador;
-						}			 		
-				 		escolhida->set_cor_coringa();
+						}		 		
+				 		//escolhida->set_cor_coringa();
 	 				break;
 
 	 			case CORINGA:
-	 					escolhida->set_cor_coringa();
+	 					_jogadores[_jogador_atual]->escolhe_cor(escolhida);
+	 					//como era antes : escolhida->set_cor_coringa();
 	 				break;			 
 		}
 	}
-	int Jogo::cnt_compra_2(){
+	int Jogo::cnt_de_carta(char valor){
 		std::list<Carta*>::reverse_iterator rit = _pilha_de_cartas.rbegin();
 		int contador = 0;
-		while ( (*rit)->get_valor()  == COMPRA_2 && rit!=_pilha_de_cartas.rend() && (*rit)->get_jogador_alvo() != -1 ){
+		while ( (*rit)->get_valor()  == valor && rit!=_pilha_de_cartas.rend() && (*rit)->get_jogador_alvo() != -1 ){
 			contador = contador  + 1;
 			(*rit)->set_jogador_alvo(-1);
 			++rit;
 		}
-		//std::cout<< "QUANTIDADE DE CARTA +2 == " << contador <<std::endl;
-		return contador;
-	}
-	int Jogo::cnt_compra_4(){
-		std::list<Carta*>::reverse_iterator rit = _pilha_de_cartas.rbegin();
-		int contador = 0;
-		while ( (*rit)->get_valor()  == COMPRA_4   && rit !=_pilha_de_cartas.rend() && (*rit)->get_jogador_alvo() != -1){
-			contador = contador  + 1;
-			(*rit)->set_jogador_alvo(-1);
-			++rit;
-		}
-		//std::cout<< "QUANTIDADE DE CARTA +4 == " << contador <<std::endl;
 		return contador;
 	}
 	void Jogo::passa_rodada(){

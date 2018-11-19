@@ -58,9 +58,7 @@
 		 	  _baralho.pop_back();
 		 }
 	}
-
 	//METODOS
-
 	int Baralho::get_tamanho() const{
 		return _baralho.size();
 	}
@@ -95,7 +93,7 @@
 		return _baralho[_baralho.size() - 1];
 	}
 	void Baralho::retira_especial_do_topo(){
-		//caso a primeira carta seja uma carta de efeito o bralho sera rebaralhado,
+		//caso a primeira carta seja uma carta de efeito o baralho sera rebaralhado,
 		//nao é a soluçao mais elegante (inclusive pode fazer com ele seja embaralhado varias vezes mas funciona)
 		while(_baralho.back()->get_valor()== PULAR || _baralho.back()->get_valor()== REVERTER || _baralho.back()->get_valor()== COMPRA_2 || _baralho.back()->get_cor()== ESPECIAL ){
 			this->embaralhar();

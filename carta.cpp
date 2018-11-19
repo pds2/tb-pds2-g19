@@ -4,9 +4,9 @@
 #include <limits.h>
 
 	Carta::Carta(){}
-	Carta::Carta(char color , char value){
-		_cor = color;
-		_valor = value;
+	Carta::Carta(char cor,char valor){
+		_cor = cor;
+		_valor = valor;
 		_jogador_alvo = -1;
 	}
 	Carta::~Carta(){}
@@ -19,55 +19,10 @@
 	char Carta::get_valor() const{
 		return _valor;
 	}
-	void Carta::set_cor_coringa(){
-		//metodo destinado as cartas que o jogador pode escolher  a cor
-		char c;
-		if (this->_cor == ESPECIAL){
-			std::cout << " Escolha a cor que deseja entre (r,b,g,y) : " << std::endl;
-			std::cin >> c;
-
-			//EXCECAO DE ENTRADA INVALIDA TRATADA
-			while(std::cin.fail() || (c != 'r' && c != 'b' && c != 'g' && c != 'y')){
-				if( std::cin.fail()){
-					std::cin.clear();
-					std::cin.ignore(INT_MAX,'\n');
-				}
-				std::cout << " Cor invalida escolhida, escolha entre (r,b,g,y) : " << std::endl;
-				std::cin >> c;
-			}
-
-			this->_cor = c;
-		}
-		else {
-			std::cout << "Programador : Tal carta nao pode mudar de cor durante a partida"<<std::endl;
-		}
+	void Carta::set_cor(char cor){
+		this->_cor = cor;
 	}
-	void Carta::print_carta() const{
-	
-		switch (this->_cor){
-		 	
-		 	case RED:
-		 		std::cout << "  red   ";
-		 		break;
-
-		 	case YELLOW:
-		 		std::cout << " yellow ";
-		 		break;
-
-		 	case BLUE:
-		 		std::cout << "  blue  ";
-		 		break;
-
-		 	case GREEN:
-		 		std::cout << "  green  ";
-		 		break;
-
-		 	case ESPECIAL:
-		 		std::cout << "  especial ";
-		 		break;
-		 	default : 
-		 		std::cout << " ERRO ERRO COR NAO POSSIVEL ";		 		
-		}
+	void Carta::print_carta_valor() const{
 		switch (this->_valor){
 			
 			case PULAR:
@@ -94,6 +49,37 @@
 				std::cout << " " << _valor << " " ;
 
 		}
+	}
+	void Carta::print_carta_cor() const{
+		switch (this->_cor){
+		 	
+		 	case RED:
+		 		std::cout << "  red   ";
+		 		break;
+
+		 	case YELLOW:
+		 		std::cout << " yellow ";
+		 		break;
+
+		 	case BLUE:
+		 		std::cout << "  blue  ";
+		 		break;
+
+		 	case GREEN:
+		 		std::cout << "  green  ";
+		 		break;
+
+		 	case ESPECIAL:
+		 		std::cout << "  especial ";
+		 		break;
+		 	default : 
+		 		std::cout << " ERRO COR NAO POSSIVEL ";		 		
+		}
+	}
+
+	void Carta::print_carta() const{
+		this->print_carta_cor();
+		this->print_carta_valor();
 		std::cout << std::endl; 
 	}
 		

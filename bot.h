@@ -8,9 +8,9 @@
 		public:
 			Bot(std::string nome);
 			~Bot();
-			virtual Carta* jogada (Carta *atual);
-			virtual Carta* rebate_compra_2();
-			virtual Carta* rebate_compra_4();	
+			virtual Carta* jogada (Carta *atual) override;
+			virtual Carta* rebate(char valor) override;
+			
 	};
 
 

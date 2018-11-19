@@ -29,15 +29,19 @@ class Carta{
 	public:
 		//CONTRUTORES E DESTRUTOR 
 		Carta();
-		Carta(char color , char	 value);
+		Carta(char cor,char valor);
 		~Carta();
 		
 		//METODOS
 		
 		char get_cor() const;
 		char get_valor() const;
-		void set_cor_coringa();
+		void set_cor(char cor);
+		
 		void print_carta() const;
+		void print_carta_valor() const;
+		void print_carta_cor() const;
+
 		int get_jogador_alvo() const;
 		void set_jogador_alvo(int pos);
 

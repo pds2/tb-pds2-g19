@@ -22,13 +22,13 @@
 			void set_nome(std::string nome);
 			int num_cartas() const;	
 			void compra_carta(Baralho &baralho);
-			Carta* jogada (Carta *atual);
+			virtual Carta* jogada (Carta *atual);
 			void print_mao() const;
+			void print_mao(char valor) const;
 			int cartas_jogaveis(Carta *atual) const;
-			int qtd_compra_2() const;
-			int qtd_compra_4() const;
-			Carta* rebate_compra_2();
-			Carta* rebate_compra_4();
+			int qtd_de_carta(char valor) const;
+			virtual Carta* rebate(char valor);
+			virtual void escolhe_cor(Carta *escolhida);
 	};
 
 
