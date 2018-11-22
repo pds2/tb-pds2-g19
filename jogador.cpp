@@ -26,16 +26,15 @@
 		return _mao.size();
 	}
 	void Jogador::compra_carta(Baralho &baralho){
-		if(baralho.get_tamanho() > 0 ){			
+		if(baralho.get_tamanho() > 0 ){
 			_mao.push_back(baralho.get_ultima_carta());
 			baralho.remove_fim();
 		}
 	}
-	
+
 	Carta* Jogador::jogada (Carta *atual){
-		//retorna  o ponteiro da carta jogada pelo jogador 
+		//retorna  o ponteiro da carta jogada pelo jogador
 		std::cout<<"Escolha a posicao da carta de sua mao para jogar : " << std::endl;
-		this->print_mao();
 		 int pos;
 		std::cin >> pos;
 
@@ -46,16 +45,17 @@
 				std::cin.ignore(INT_MAX,'\n');
 				std::cout<< "Jogada invalida "<<std::endl;
 			}
-			std::cout<<"A posicao escolhida nao existe, favor escolher entre 0 e " << this->num_cartas()-1 << std::endl;	
+			std::cout<<"A posicao escolhida nao existe, favor escolher entre 0 e " << this->num_cartas()-1 << std::endl;
 			std::cin >> pos;
 		}
 
 		Carta *to_return = _mao[pos];
-		
+
 		if (to_return->get_cor() == ESPECIAL || to_return->get_cor() == atual->get_cor() || to_return->get_valor() == atual->get_valor()){
-			//primeiro  o ponteiro é  apontado para nullptr para que o metodo erase() nao apague o objeto alocado no heap  
+			//primeiro  o ponteiro é  apontado para nullptr para que o metodo erase() nao apague o objeto alocado no heap
 			_mao[pos] = nullptr;
 			_mao.erase(_mao.begin() + pos);
+			std::cin.clear();
 			return to_return;
 		}
 		else{
@@ -63,7 +63,7 @@
 			return this->jogada(atual);
 		}
 	}
-	
+
 	void Jogador::print_mao() const	{
 		int tam = this->num_cartas();
 		std::cout << _nome << " : "<< std::endl;
@@ -79,12 +79,12 @@
 		std::cout << _nome << " : "<< std::endl;
 		std::cout<<std::endl;
 		for (int i = 0 ; i < tam ; i++){
-			if(_mao[i]->get_valor() == valor  ){	
+			if(_mao[i]->get_valor() == valor  ){
 				std::cout<< "  " << i << " ";
 				_mao[i]->print_carta();
-			}	
+			}
 		}
-		std::cout <<std::endl;		
+		std::cout <<std::endl;
 	}
 	int Jogador::cartas_jogaveis(Carta *atual) const{
 		//retorna a quantidade de cartas jogaveis pelo jogador tendo em base a carta jogada pelo ultimo jogador
@@ -110,7 +110,7 @@
 		int pos = 0;
 		this->print_mao(valor);
 
-		std::cout<<"Escolha a posicao da carta "; 
+		std::cout<<"Escolha a posicao da carta ";
 		value.print_carta_valor();
 		std::cout <<" de sua mao para jogar :" << std::endl;
 		std::cin >> pos;
@@ -128,7 +128,7 @@
 			}
 			std::cin >> pos;
 		}
-		Carta *to_return = _mao[pos];		
+		Carta *to_return = _mao[pos];
 		_mao.erase(_mao.begin() + pos);
 		return to_return;
 	}
@@ -144,12 +144,28 @@
 					std::cin.ignore(INT_MAX,'\n');
 				}
 			  	std::cout << " Cor invalida escolhida, escolha entre (r,b,g,y) : " << std::endl;
-				std::cin >> cor;	
+				std::cin >> cor;
 			}
 			escolhida->set_cor(cor);
 		}
 		else{
 			std::cout << "Programador : Tal carta nao pode mudar de cor durante a partida"<<std::endl;
-		}	
+		}
 	}
-	
+  bool Jogador::vai_jogar(){
+    char jogador_n_quer_jogar;
+    std::cout << "Vc quer jogar('j') ou pular('p')?\n";
+    std::cin >> jogador_n_quer_jogar;
+    while(std::cin.fail()||(jogador_n_quer_jogar!='j'&&jogador_n_quer_jogar!='p')){
+      if(std::cin.fail()){
+         std::cin.clear();
+         std::cin.ignore(INT_MAX,'\n');
+      }
+      std::cout << "Vc quer jogar('j') ou pular('p')?\n";
+      std::cin >> jogador_n_quer_jogar;
+    }
+    if(jogador_n_quer_jogar=='p')return false;
+    if(jogador_n_quer_jogar=='j')return true;
+  }
+
+
