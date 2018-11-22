@@ -1,8 +1,5 @@
 #include <list>
 #include <vector>
-
-//onde se joga as cartas
-//primeiramente eu usei o stack mas acabei mudando para list pois e mais facil de lidar
 #ifndef JOGO_H
 #define JOGO_H
 
