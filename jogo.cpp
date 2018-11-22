@@ -12,9 +12,9 @@
 		this->_baralho = new Baralho;
 		this->_sentido = 1;
 		this->_jogador_atual = 0;
-		
 
-		std::string nome_jogador; 
+
+		std::string nome_jogador;
 		std::cout<<std::endl;
 		std::cout << "Digite o numero de jogadores e de bots separados por espaco :" << std::endl;
 
@@ -32,7 +32,7 @@
 			std::cout << "Digite o nome do jogador " << i + 1 << std::endl;
 
 			std::getline(std::cin,nome_jogador);
-			//TRATAR EXCECOES DE ERRO DE USUARIO 
+			//TRATAR EXCECOES DE ERRO DE USUARIO
 			Jogador *novo = new Jogador(nome_jogador);
 			for (int j = 0;j < MAO_INICIAL;j++){
 				novo->compra_carta(*_baralho);
@@ -45,7 +45,7 @@
 		_pilha_de_cartas.push_back(_baralho->get_ultima_carta());
 		_baralho->remove_fim();
 	}
-	
+
 	Jogo::~Jogo(){
 		 while (!_pilha_de_cartas.empty()){
 		 	  delete _pilha_de_cartas.front();
@@ -65,68 +65,74 @@
 	void Jogo::print_Jogo(){
 		//std::list<Carta*>::iterator it  = _pilha_de_cartas.end();
 		for (std::list<Carta*>::reverse_iterator rit = _pilha_de_cartas.rbegin(); rit!=_pilha_de_cartas.rend(); ++rit)
-			(*rit)->print_carta();	
+			(*rit)->print_carta();
 	}
 
 	int Jogo::rodada(){
 		Carta *escolhida;
 		Carta *carta_atual =  _pilha_de_cartas.back();
-		std::cout << "Carta atual : " ;
+		std::cout << "\nCarta atual : " ;
 		carta_atual->print_carta();
-		
+
 		std::cout << "Numero de cartas na pilha ==  " <<_pilha_de_cartas.size();
 		std::cout << "  Numero de cartas no baralho  ==  " << _baralho->get_tamanho() << std::endl;
-	
-		//////////
+
 		if(_baralho->get_tamanho() == 0){
 			this->repoe_baralho();
 		}
-		//////////
+		  if (_jogadores[ _jogador_atual ] ->cartas_jogaveis(carta_atual) == 0 ){
+			  std::cout << std::endl << "O jogador " << _jogadores[ _jogador_atual ]->get_nome() <<" nao tem cartas jogaveis e teve que comprar uma\n " << std::endl;
+			  _jogadores[ _jogador_atual ]->compra_carta(*_baralho);
+			  //caso tenha comprado uma carta jogavel(valida)
+			  if (_jogadores[ _jogador_atual ] ->cartas_jogaveis(carta_atual) != 0 ){
+				  return rodada();
+			  }
+			  this->passa_rodada();
+			  return 1;
+		  }
+		  else if (carta_atual->get_valor() == COMPRA_2 &&_jogadores[this->_jogador_atual]->qtd_de_carta(COMPRA_2) > 0 && carta_atual->get_jogador_alvo() == _jogador_atual){
+			  escolhida =_jogadores[_jogador_atual]->rebate(COMPRA_2);
+		  }
+		  else if (carta_atual->get_valor() == COMPRA_4   &&_jogadores[this->_jogador_atual]->qtd_de_carta(COMPRA_4) > 0 && carta_atual->get_jogador_alvo() == _jogador_atual){
+		 	  escolhida =_jogadores[_jogador_atual]->rebate(COMPRA_4);
+		  }
+		  else{
+        //o jogador pode pular a rodada
+        _jogadores[_jogador_atual]->print_mao();
+       if(!_jogadores[_jogador_atual]->vai_jogar()){
+          std::cout << "O player "<<_jogadores[_jogador_atual]->get_nome()<<" pulou a vez\n";
+          _jogadores[ _jogador_atual ]->compra_carta(*_baralho);
+          this->passa_rodada();
+          return 1;
+        }
+        std::cout << "Carta atual : " ;
+		    carta_atual->print_carta();
+			  escolhida =_jogadores[ _jogador_atual ]->jogada( carta_atual );
+		  }
 
-		if (_jogadores[ _jogador_atual ] ->cartas_jogaveis(carta_atual) == 0 ){
-			std::cout << _jogadores[ _jogador_atual ]->get_nome() <<" NAO POSSUI CARTAS PARA JOGAR E TEVE COMPRAR UMA " << std::endl;
-			_jogadores[ _jogador_atual ]->compra_carta(*_baralho);
-			//caso tenha comprado uma carta jogavel(valida)
-			if (_jogadores[ _jogador_atual ] ->cartas_jogaveis(carta_atual) != 0 ){
-				return rodada();
-			}
-			this->passa_rodada();
-			return 1;
-		}
-		else if (carta_atual->get_valor() == COMPRA_2 &&_jogadores[this->_jogador_atual]->qtd_de_carta(COMPRA_2) > 0 && carta_atual->get_jogador_alvo() == _jogador_atual){
-			escolhida =_jogadores[_jogador_atual]->rebate(COMPRA_2);
-		}
-		else if (carta_atual->get_valor() == COMPRA_4   &&_jogadores[this->_jogador_atual]->qtd_de_carta(COMPRA_4) > 0 && carta_atual->get_jogador_alvo() == _jogador_atual){
-			escolhida =_jogadores[_jogador_atual]->rebate(COMPRA_4);
-		} 
-		else{
-			escolhida =_jogadores[ _jogador_atual ]->jogada( carta_atual );
-			
-		}
-		
-		if(_jogadores[_jogador_atual]->num_cartas() == 0){
-			std::cout << "Acabou "<<_jogadores[_jogador_atual]->get_nome() << " e o campeao" << std::endl;
-			return 0;
-		}
-		_pilha_de_cartas.push_back(escolhida);
-		this->efeitos_de_carta(escolhida);
-		this->passa_rodada();
-		return 1;                                                                                         
+		  if(_jogadores[_jogador_atual]->num_cartas() == 0){
+			  std::cout << "Acabou "<<_jogadores[_jogador_atual]->get_nome() << " e o campeao" << std::endl;
+			  return 0;
+		  }
+		  _pilha_de_cartas.push_back(escolhida);
+		  this->efeitos_de_carta(escolhida);
+		  this->passa_rodada();
+		  return 1;
 	}
 	void Jogo::efeitos_de_carta(Carta *escolhida){
-		
+
 		int proximo_jogador = (this->_jogador_atual + this->_sentido) % this->_n_jogadores;
 		if (proximo_jogador < 0)
 			proximo_jogador += this->_n_jogadores;
-		
-		switch (escolhida->get_valor()){		
-				case PULAR :	
+
+		switch (escolhida->get_valor()){
+				case PULAR :
 						this->_jogador_atual = proximo_jogador;
 	 				break;
 
 	 			case REVERTER:
 		 				if (_n_jogadores == 2)
-		 					this->_jogador_atual = proximo_jogador;	
+		 					this->_jogador_atual = proximo_jogador;
 		 				else
 		 					this->_sentido = -_sentido;
 	 				break;
@@ -154,14 +160,14 @@
 							for(int i = 0;i < 4*n_compra_4;i++)
 				 				this->_jogadores[proximo_jogador]->compra_carta(*_baralho);
 				 			this->_jogador_atual = proximo_jogador;
-						}		 		
+						}
 				 		//escolhida->set_cor_coringa();
 	 				break;
 
 	 			case CORINGA:
 	 					_jogadores[_jogador_atual]->escolhe_cor(escolhida);
 	 					//como era antes : escolhida->set_cor_coringa();
-	 				break;			 
+	 				break;
 		}
 	}
 	int Jogo::cnt_de_carta(char valor){
@@ -177,29 +183,25 @@
 	void Jogo::passa_rodada(){
 		this->_jogador_atual = (this->_jogador_atual + this->_sentido) % this->_n_jogadores;
 		if (this->_jogador_atual < 0){
-			this->_jogador_atual += this->_n_jogadores;			
+			this->_jogador_atual += this->_n_jogadores;
 		}
 	}
-	//////////
 	void Jogo::repoe_baralho(){
 		std::cout<<"Acabou as carta e a pilha foi reembaralhada" <<std::endl;
 		Carta *carta_atual =  _pilha_de_cartas.back();
 		_pilha_de_cartas.pop_back();
-		
-		while(_pilha_de_cartas.size() > 0){		
-			_pilha_de_cartas.back()->tira_cor_especial();//tira as cores das cartas COMPRA_4 e CORINGA voltando a ter a cor ESPECIAL		 	
+
+		while(_pilha_de_cartas.size() > 0){
+			_pilha_de_cartas.back()->tira_cor_especial();//tira as cores das cartas COMPRA_4 e CORINGA voltando a ter a cor ESPECIAL
 			_baralho->adiciona_carta(_pilha_de_cartas.back());
 			_pilha_de_cartas.pop_back();
 		}
 		_baralho->embaralhar();
-		_pilha_de_cartas.push_back(carta_atual);		
+		_pilha_de_cartas.push_back(carta_atual);
 	}
-	//////////
 	void Jogo::inicia_jogo(){
 		while (this->rodada()){}
 	}
-
-
 
 
 
