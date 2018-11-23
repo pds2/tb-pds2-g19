@@ -1,0 +1,665 @@
+
+Digite o numero de jogadores e de bots separados por espaco :
+Bot 01 : 
+
+  0   green   6 
+  1   blue   pular
+  2   blue   reverter  
+  3   blue   pular
+  4   red    4 
+  5   blue   8 
+  6   blue   6 
+
+Bot 02 : 
+
+  0   blue   8 
+  1  yellow  8 
+  2   red    9 
+  3  yellow  reverter  
+  4   blue   7 
+  5  yellow  pular
+  6  yellow  7 
+
+Bot 03 : 
+
+  0   green   1 
+  1  yellow  9 
+  2  yellow  compra 2  
+  3   green   compra 2  
+  4   blue   2 
+  5   green   reverter  
+  6   green   3 
+
+Bot 04 : 
+
+  0   red    2 
+  1  yellow  4 
+  2   blue   9 
+  3   especial  compra 4 
+  4   blue   7 
+  5  yellow  8 
+  6   red    7 
+
+Bot 05 : 
+
+  0  yellow  2 
+  1   especial  coringa  
+  2  yellow  3 
+  3   blue   compra 2  
+  4   especial  coringa  
+  5   red    reverter  
+  6   green   2 
+
+Bot 06 : 
+
+  0   red    1 
+  1   green   8 
+  2   especial  coringa  
+  3   red    reverter  
+  4   red    6 
+  5   green   2 
+  6  yellow  6 
+
+
+Carta atual :   green   1 
+Numero de cartas na pilha ==  1  Numero de cartas no baralho  ==  65
+Bot 05 : 
+
+  0  yellow  2 
+  1   especial  coringa  
+  2  yellow  3 
+  3   blue   compra 2  
+  4   especial  coringa  
+  5   red    reverter  
+  6   green   2 
+
+Carta atual :   green   1 
+O Bot 05 jogou :   especial  coringa  
+O Bot 05 escolheu :  yellow 
+Carta atual :  yellow  coringa  
+Numero de cartas na pilha ==  2  Numero de cartas no baralho  ==  65
+Bot 02 : 
+
+  0   blue   8 
+  1  yellow  8 
+  2   red    9 
+  3  yellow  reverter  
+  4   blue   7 
+  5  yellow  pular
+  6  yellow  7 
+
+Carta atual :  yellow  coringa  
+O Bot 02 jogou :  yellow  8 
+
+Carta atual :  yellow  8 
+Numero de cartas na pilha ==  3  Numero de cartas no baralho  ==  65
+Bot 01 : 
+
+  0   green   6 
+  1   blue   pular
+  2   blue   reverter  
+  3   blue   pular
+  4   red    4 
+  5   blue   8 
+  6   blue   6 
+
+Carta atual :  yellow  8 
+O Bot 01 jogou :   blue   8 
+
+Carta atual :   blue   8 
+Numero de cartas na pilha ==  4  Numero de cartas no baralho  ==  65
+Bot 04 : 
+
+  0   red    2 
+  1  yellow  4 
+  2   blue   9 
+  3   especial  compra 4 
+  4   blue   7 
+  5  yellow  8 
+  6   red    7 
+
+Carta atual :   blue   8 
+O Bot 04 jogou :   blue   9 
+
+Carta atual :   blue   9 
+Numero de cartas na pilha ==  5  Numero de cartas no baralho  ==  65
+Bot 03 : 
+
+  0   green   1 
+  1  yellow  9 
+  2  yellow  compra 2  
+  3   green   compra 2  
+  4   blue   2 
+  5   green   reverter  
+  6   green   3 
+
+Carta atual :   blue   9 
+O Bot 03 jogou :  yellow  9 
+
+Carta atual :  yellow  9 
+Numero de cartas na pilha ==  6  Numero de cartas no baralho  ==  65
+Bot 06 : 
+
+  0   red    1 
+  1   green   8 
+  2   especial  coringa  
+  3   red    reverter  
+  4   red    6 
+  5   green   2 
+  6  yellow  6 
+
+Carta atual :  yellow  9 
+O Bot 06 jogou :   especial  coringa  
+O Bot 06 escolheu :   red   
+Carta atual :   red    coringa  
+Numero de cartas na pilha ==  7  Numero de cartas no baralho  ==  65
+Bot 05 : 
+
+  0  yellow  2 
+  1  yellow  3 
+  2   blue   compra 2  
+  3   especial  coringa  
+  4   red    reverter  
+  5   green   2 
+
+Carta atual :   red    coringa  
+O Bot 05 jogou :   especial  coringa  
+O Bot 05 escolheu :  yellow 
+Carta atual :  yellow  coringa  
+Numero de cartas na pilha ==  8  Numero de cartas no baralho  ==  65
+Bot 02 : 
+
+  0   blue   8 
+  1   red    9 
+  2  yellow  reverter  
+  3   blue   7 
+  4  yellow  pular
+  5  yellow  7 
+
+Carta atual :  yellow  coringa  
+O Bot 02 jogou :  yellow  reverter  
+
+Carta atual :  yellow  reverter  
+Numero de cartas na pilha ==  9  Numero de cartas no baralho  ==  65
+Bot 05 : 
+
+  0  yellow  2 
+  1  yellow  3 
+  2   blue   compra 2  
+  3   red    reverter  
+  4   green   2 
+
+Carta atual :  yellow  reverter  
+O Bot 05 jogou :  yellow  2 
+
+Carta atual :  yellow  2 
+Numero de cartas na pilha ==  10  Numero de cartas no baralho  ==  65
+Bot 06 : 
+
+  0   red    1 
+  1   green   8 
+  2   red    reverter  
+  3   red    6 
+  4   green   2 
+  5  yellow  6 
+
+Carta atual :  yellow  2 
+O Bot 06 jogou :   green   2 
+
+Carta atual :   green   2 
+Numero de cartas na pilha ==  11  Numero de cartas no baralho  ==  65
+Bot 03 : 
+
+  0   green   1 
+  1  yellow  compra 2  
+  2   green   compra 2  
+  3   blue   2 
+  4   green   reverter  
+  5   green   3 
+
+Carta atual :   green   2 
+O Bot 03 jogou :   green   1 
+
+Carta atual :   green   1 
+Numero de cartas na pilha ==  12  Numero de cartas no baralho  ==  65
+Bot 04 : 
+
+  0   red    2 
+  1  yellow  4 
+  2   especial  compra 4 
+  3   blue   7 
+  4  yellow  8 
+  5   red    7 
+
+Carta atual :   green   1 
+O Bot 04 jogou :   especial  compra 4 
+O Bot 04 escolheu :  yellow 
+Carta atual :  yellow  compra 4 
+Numero de cartas na pilha ==  13  Numero de cartas no baralho  ==  61
+Bot 02 : 
+
+  0   blue   8 
+  1   red    9 
+  2   blue   7 
+  3  yellow  pular
+  4  yellow  7 
+
+Carta atual :  yellow  compra 4 
+O Bot 02 jogou :  yellow  pular
+
+Carta atual :  yellow  pular
+Numero de cartas na pilha ==  14  Numero de cartas no baralho  ==  61
+Bot 06 : 
+
+  0   red    1 
+  1   green   8 
+  2   red    reverter  
+  3   red    6 
+  4  yellow  6 
+
+Carta atual :  yellow  pular
+O Bot 06 jogou :  yellow  6 
+
+Carta atual :  yellow  6 
+Numero de cartas na pilha ==  15  Numero de cartas no baralho  ==  61
+Bot 03 : 
+
+  0  yellow  compra 2  
+  1   green   compra 2  
+  2   blue   2 
+  3   green   reverter  
+  4   green   3 
+
+Carta atual :  yellow  6 
+O Bot 03 jogou :  yellow  compra 2  
+
+Carta atual :  yellow  compra 2  
+Numero de cartas na pilha ==  16  Numero de cartas no baralho  ==  59
+Bot 01 : 
+
+  0   green   6 
+  1   blue   pular
+  2   blue   reverter  
+  3   blue   pular
+  4   red    4 
+  5   blue   6 
+  6   blue   2 
+  7   blue   1 
+  8   blue   3 
+  9  yellow  9 
+
+Carta atual :  yellow  compra 2  
+O Bot 01 jogou :  yellow  9 
+
+Carta atual :  yellow  9 
+Numero de cartas na pilha ==  17  Numero de cartas no baralho  ==  59
+Bot 02 : 
+
+  0   blue   8 
+  1   red    9 
+  2   blue   7 
+  3  yellow  7 
+
+Carta atual :  yellow  9 
+O Bot 02 jogou :   red    9 
+
+Carta atual :   red    9 
+Numero de cartas na pilha ==  18  Numero de cartas no baralho  ==  59
+Bot 05 : 
+
+  0  yellow  3 
+  1   blue   compra 2  
+  2   red    reverter  
+  3   green   2 
+
+Carta atual :   red    9 
+O Bot 05 jogou :   red    reverter  
+
+Carta atual :   red    reverter  
+Numero de cartas na pilha ==  19  Numero de cartas no baralho  ==  59
+
+O jogador Bot 02 nao tem cartas jogaveis e teve que comprar uma
+ 
+
+Carta atual :   red    reverter  
+Numero de cartas na pilha ==  19  Numero de cartas no baralho  ==  58
+Bot 01 : 
+
+  0   green   6 
+  1   blue   pular
+  2   blue   reverter  
+  3   blue   pular
+  4   red    4 
+  5   blue   6 
+  6   blue   2 
+  7   blue   1 
+  8   blue   3 
+
+Carta atual :   red    reverter  
+O Bot 01 jogou :   blue   reverter  
+
+Carta atual :   blue   reverter  
+Numero de cartas na pilha ==  20  Numero de cartas no baralho  ==  58
+Bot 02 : 
+
+  0   blue   8 
+  1   blue   7 
+  2  yellow  7 
+  3   green   pular
+
+Carta atual :   blue   reverter  
+O Bot 02 jogou :   blue   8 
+
+Carta atual :   blue   8 
+Numero de cartas na pilha ==  21  Numero de cartas no baralho  ==  58
+Bot 05 : 
+
+  0  yellow  3 
+  1   blue   compra 2  
+  2   green   2 
+
+Carta atual :   blue   8 
+O Bot 05 jogou :   blue   compra 2  
+
+Carta atual :   blue   compra 2  
+Numero de cartas na pilha ==  22  Numero de cartas no baralho  ==  56
+Bot 03 : 
+
+  0   green   compra 2  
+  1   blue   2 
+  2   green   reverter  
+  3   green   3 
+
+Carta atual :   blue   compra 2  
+O Bot 03 jogou :   green   compra 2  
+
+Carta atual :   green   compra 2  
+Numero de cartas na pilha ==  23  Numero de cartas no baralho  ==  54
+Bot 01 : 
+
+  0   green   6 
+  1   blue   pular
+  2   blue   pular
+  3   red    4 
+  4   blue   6 
+  5   blue   2 
+  6   blue   1 
+  7   blue   3 
+
+Carta atual :   green   compra 2  
+O Bot 01 jogou :   green   6 
+
+Carta atual :   green   6 
+Numero de cartas na pilha ==  24  Numero de cartas no baralho  ==  54
+Bot 02 : 
+
+  0   blue   7 
+  1  yellow  7 
+  2   green   pular
+
+Carta atual :   green   6 
+O Bot 02 jogou :   green   pular
+
+Carta atual :   green   pular
+Numero de cartas na pilha ==  25  Numero de cartas no baralho  ==  54
+Bot 06 : 
+
+  0   red    1 
+  1   green   8 
+  2   red    reverter  
+  3   red    6 
+  4  yellow  compra 2  
+  5   red    2 
+
+Carta atual :   green   pular
+O Bot 06 jogou :   green   8 
+
+Carta atual :   green   8 
+Numero de cartas na pilha ==  26  Numero de cartas no baralho  ==  54
+Bot 03 : 
+
+  0   blue   2 
+  1   green   reverter  
+  2   green   3 
+
+Carta atual :   green   8 
+O Bot 03 jogou :   green   reverter  
+
+Carta atual :   green   reverter  
+Numero de cartas na pilha ==  27  Numero de cartas no baralho  ==  54
+Bot 06 : 
+
+  0   red    1 
+  1   red    reverter  
+  2   red    6 
+  3  yellow  compra 2  
+  4   red    2 
+
+Carta atual :   green   reverter  
+O Bot 06 jogou :   red    reverter  
+
+Carta atual :   red    reverter  
+Numero de cartas na pilha ==  28  Numero de cartas no baralho  ==  54
+
+O jogador Bot 03 nao tem cartas jogaveis e teve que comprar uma
+ 
+
+Carta atual :   red    reverter  
+Numero de cartas na pilha ==  28  Numero de cartas no baralho  ==  53
+Bot 04 : 
+
+  0   red    2 
+  1  yellow  4 
+  2   blue   7 
+  3  yellow  8 
+  4   red    7 
+  5   green   reverter  
+  6  yellow  2 
+  7   especial  compra 4 
+  8   green   9 
+
+Carta atual :   red    reverter  
+O Bot 04 jogou :   red    2 
+
+Carta atual :   red    2 
+Numero de cartas na pilha ==  29  Numero de cartas no baralho  ==  53
+Bot 01 : 
+
+  0   blue   pular
+  1   blue   pular
+  2   red    4 
+  3   blue   6 
+  4   blue   2 
+  5   blue   1 
+  6   blue   3 
+
+Carta atual :   red    2 
+O Bot 01 jogou :   red    4 
+
+Carta atual :   red    4 
+Numero de cartas na pilha ==  30  Numero de cartas no baralho  ==  53
+
+O jogador Bot 02 nao tem cartas jogaveis e teve que comprar uma
+ 
+
+Carta atual :   red    4 
+Numero de cartas na pilha ==  30  Numero de cartas no baralho  ==  52
+Bot 02 : 
+
+  0   blue   7 
+  1  yellow  7 
+  2   red    3 
+
+Carta atual :   red    4 
+O Bot 02 jogou :   red    3 
+
+Carta atual :   red    3 
+Numero de cartas na pilha ==  31  Numero de cartas no baralho  ==  52
+Bot 05 : 
+
+  0  yellow  3 
+  1   green   2 
+
+Carta atual :   red    3 
+O Bot 05 jogou :  yellow  3 
+
+Carta atual :  yellow  3 
+Numero de cartas na pilha ==  32  Numero de cartas no baralho  ==  52
+Bot 06 : 
+
+  0   red    1 
+  1   red    6 
+  2  yellow  compra 2  
+  3   red    2 
+
+Carta atual :  yellow  3 
+O Bot 06 jogou :  yellow  compra 2  
+
+Carta atual :  yellow  compra 2  
+Numero de cartas na pilha ==  33  Numero de cartas no baralho  ==  50
+Bot 04 : 
+
+  0  yellow  4 
+  1   blue   7 
+  2  yellow  8 
+  3   red    7 
+  4   green   reverter  
+  5  yellow  2 
+  6   especial  compra 4 
+  7   green   9 
+
+Carta atual :  yellow  compra 2  
+O Bot 04 jogou :  yellow  4 
+
+Carta atual :  yellow  4 
+Numero de cartas na pilha ==  34  Numero de cartas no baralho  ==  50
+
+O jogador Bot 01 nao tem cartas jogaveis e teve que comprar uma
+ 
+
+Carta atual :  yellow  4 
+Numero de cartas na pilha ==  34  Numero de cartas no baralho  ==  49
+Bot 02 : 
+
+  0   blue   7 
+  1  yellow  7 
+
+Carta atual :  yellow  4 
+O Bot 02 jogou :  yellow  7 
+
+Carta atual :  yellow  7 
+Numero de cartas na pilha ==  35  Numero de cartas no baralho  ==  49
+
+O jogador Bot 05 nao tem cartas jogaveis e teve que comprar uma
+ 
+
+Carta atual :  yellow  7 
+Numero de cartas na pilha ==  35  Numero de cartas no baralho  ==  48
+
+O jogador Bot 06 nao tem cartas jogaveis e teve que comprar uma
+ 
+
+Carta atual :  yellow  7 
+Numero de cartas na pilha ==  35  Numero de cartas no baralho  ==  47
+Bot 03 : 
+
+  0   blue   2 
+  1   green   3 
+  2   blue   1 
+  3   red    3 
+  4   green   7 
+
+Carta atual :  yellow  7 
+O Bot 03 jogou :   green   7 
+
+Carta atual :   green   7 
+Numero de cartas na pilha ==  36  Numero de cartas no baralho  ==  47
+Bot 04 : 
+
+  0   blue   7 
+  1  yellow  8 
+  2   red    7 
+  3   green   reverter  
+  4  yellow  2 
+  5   especial  compra 4 
+  6   green   9 
+
+Carta atual :   green   7 
+O Bot 04 jogou :   blue   7 
+
+Carta atual :   blue   7 
+Numero de cartas na pilha ==  37  Numero de cartas no baralho  ==  47
+Bot 01 : 
+
+  0   blue   pular
+  1   blue   pular
+  2   blue   6 
+  3   blue   2 
+  4   blue   1 
+  5   blue   3 
+  6   red    pular
+
+Carta atual :   blue   7 
+O Bot 01 jogou :   blue   pular
+
+Carta atual :   blue   pular
+Numero de cartas na pilha ==  38  Numero de cartas no baralho  ==  47
+
+O jogador Bot 05 nao tem cartas jogaveis e teve que comprar uma
+ 
+
+Carta atual :   blue   pular
+Numero de cartas na pilha ==  38  Numero de cartas no baralho  ==  46
+
+O jogador Bot 06 nao tem cartas jogaveis e teve que comprar uma
+ 
+
+Carta atual :   blue   pular
+Numero de cartas na pilha ==  38  Numero de cartas no baralho  ==  45
+Bot 03 : 
+
+  0   blue   2 
+  1   green   3 
+  2   blue   1 
+  3   red    3 
+
+Carta atual :   blue   pular
+O Bot 03 jogou :   blue   2 
+
+Carta atual :   blue   2 
+Numero de cartas na pilha ==  39  Numero de cartas no baralho  ==  45
+Bot 04 : 
+
+  0  yellow  8 
+  1   red    7 
+  2   green   reverter  
+  3  yellow  2 
+  4   especial  compra 4 
+  5   green   9 
+
+Carta atual :   blue   2 
+O Bot 04 jogou :  yellow  2 
+
+Carta atual :  yellow  2 
+Numero de cartas na pilha ==  40  Numero de cartas no baralho  ==  45
+Bot 01 : 
+
+  0   blue   pular
+  1   blue   6 
+  2   blue   2 
+  3   blue   1 
+  4   blue   3 
+  5   red    pular
+
+Carta atual :  yellow  2 
+O Bot 01 jogou :   blue   2 
+
+Carta atual :   blue   2 
+Numero de cartas na pilha ==  41  Numero de cartas no baralho  ==  45
+Bot 02 : 
+
+  0   blue   7 
+
+Carta atual :   blue   2 
+O Bot 02 jogou :   blue   7 
+Acabou Bot 02 e o campeao

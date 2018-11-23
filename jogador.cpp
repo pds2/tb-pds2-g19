@@ -53,7 +53,6 @@
 
 		if (to_return->get_cor() == ESPECIAL || to_return->get_cor() == atual->get_cor() || to_return->get_valor() == atual->get_valor()){
 			//primeiro  o ponteiro é  apontado para nullptr para que o metodo erase() nao apague o objeto alocado no heap
-			_mao[pos] = nullptr;
 			_mao.erase(_mao.begin() + pos);
 			std::cin.clear();
 			return to_return;
@@ -165,7 +164,8 @@
       std::cin >> jogador_n_quer_jogar;
     }
     if(jogador_n_quer_jogar=='p')return false;
-    if(jogador_n_quer_jogar=='j')return true;
-  }
+    else if(jogador_n_quer_jogar=='j')return true;
+    else return false;
+  }	
 
 

@@ -30,6 +30,7 @@
 			void passa_rodada();
 			void repoe_baralho();
 			void inicia_jogo();
+			void randomizar_jogadores();
 
 	};
 

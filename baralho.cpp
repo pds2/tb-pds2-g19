@@ -86,7 +86,6 @@
 		}
 	}
 	void Baralho::remove_fim(){
-		_baralho[_baralho.size() - 1] = nullptr;
 		_baralho.pop_back();
 	}
 	Carta* Baralho::get_ultima_carta(){

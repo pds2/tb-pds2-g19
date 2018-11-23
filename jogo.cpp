@@ -3,6 +3,10 @@
 #include "carta.h"
 #include "baralho.h"
 #include "jogador.h"
+#include "bot.h"
+#include <cstdlib>
+#include <ctime>
+
 
 #define MAO_INICIAL 7
 #define MAX_NAME 80
@@ -28,19 +32,24 @@
 			std::cin >> this->_n_bots;
 		}
 		std::cin.ignore();
-		for (unsigned int i = 0;i < _n_jogadores;i++){
+		for (int i = 0;i < _n_jogadores;i++){
 			std::cout << "Digite o nome do jogador " << i + 1 << std::endl;
-
 			std::getline(std::cin,nome_jogador);
-			//TRATAR EXCECOES DE ERRO DE USUARIO
-			Jogador *novo = new Jogador(nome_jogador);
-			for (int j = 0;j < MAO_INICIAL;j++){
-				novo->compra_carta(*_baralho);
-			}
-			novo->print_mao();
-			this->_jogadores.push_back(novo);
+			Jogador *novo_jogador = new Jogador(nome_jogador);
+			for (int j = 0;j < MAO_INICIAL;j++)
+				novo_jogador->compra_carta(*_baralho);
+			novo_jogador->print_mao();
+			this->_jogadores.push_back(novo_jogador);
 			std::cin.clear();
+		}	
+		for(int i = 0; i < _n_bots; i++ ){
+			Bot  *novo_bot = new Bot(i + 1);
+			for (int j = 0;j < MAO_INICIAL;j++)
+				novo_bot->compra_carta(*_baralho);
+			novo_bot->print_mao();
+			this->_jogadores.push_back(novo_bot);
 		}
+		this->randomizar_jogadores();
 		_baralho->retira_especial_do_topo();
 		_pilha_de_cartas.push_back(_baralho->get_ultima_carta());
 		_baralho->remove_fim();
@@ -63,7 +72,6 @@
 	}
 
 	void Jogo::print_Jogo(){
-		//std::list<Carta*>::iterator it  = _pilha_de_cartas.end();
 		for (std::list<Carta*>::reverse_iterator rit = _pilha_de_cartas.rbegin(); rit!=_pilha_de_cartas.rend(); ++rit)
 			(*rit)->print_carta();
 	}
@@ -121,9 +129,9 @@
 	}
 	void Jogo::efeitos_de_carta(Carta *escolhida){
 
-		int proximo_jogador = (this->_jogador_atual + this->_sentido) % this->_n_jogadores;
+		int proximo_jogador = (this->_jogador_atual + this->_sentido) % (this->_n_jogadores + this->_n_bots);
 		if (proximo_jogador < 0)
-			proximo_jogador += this->_n_jogadores;
+			proximo_jogador += (this->_n_jogadores + this->_n_bots);
 
 		switch (escolhida->get_valor()){
 				case PULAR :
@@ -181,9 +189,9 @@
 		return contador;
 	}
 	void Jogo::passa_rodada(){
-		this->_jogador_atual = (this->_jogador_atual + this->_sentido) % this->_n_jogadores;
+		this->_jogador_atual = (this->_jogador_atual + this->_sentido) % (this->_n_jogadores + this->_n_bots);
 		if (this->_jogador_atual < 0){
-			this->_jogador_atual += this->_n_jogadores;
+			this->_jogador_atual += (this->_n_jogadores + this->_n_bots);
 		}
 	}
 	void Jogo::repoe_baralho(){
@@ -202,7 +210,18 @@
 	void Jogo::inicia_jogo(){
 		while (this->rodada()){}
 	}
-
-
+	void Jogo::randomizar_jogadores(){
+		srand (time(NULL));
+		int j = 0;
+		Jogador *aux;
+		for (int i = _jogadores.size() - 1;i > 1;i--){
+			j = rand() % (i + 1);
+			//troca carta da posicão i com j  
+			aux = _jogadores[j];
+			_jogadores[j] = _jogadores[i];
+			_jogadores[i] = aux;
+		}
+	}
+	
 
 

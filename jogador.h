@@ -15,7 +15,7 @@
 		public:
 			Jogador();
 			Jogador(std::string nome);
-			~Jogador();
+			virtual ~Jogador();
 
 			//METODOS
 			std::string get_nome() const;
