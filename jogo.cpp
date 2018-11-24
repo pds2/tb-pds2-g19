@@ -85,47 +85,45 @@
 		std::cout << "Numero de cartas na pilha ==  " <<_pilha_de_cartas.size();
 		std::cout << "  Numero de cartas no baralho  ==  " << _baralho->get_tamanho() << std::endl;
 
-		if(_baralho->get_tamanho() == 0){
+		if(_baralho->get_tamanho() == 0)
 			this->repoe_baralho();
+		
+		if (_jogadores[ _jogador_atual ] ->cartas_jogaveis(carta_atual) == 0 ){
+			std::cout << std::endl << "O jogador " << _jogadores[ _jogador_atual ]->get_nome() <<" nao tem cartas jogaveis e teve que comprar uma\n " << std::endl;
+			_jogadores[ _jogador_atual ]->compra_carta(*_baralho);
+			//caso tenha comprado uma carta jogavel(valida)
+			if (_jogadores[ _jogador_atual ] ->cartas_jogaveis(carta_atual) != 0 )
+				return rodada();
+			this->passa_rodada();
+			return 1;
 		}
-		  if (_jogadores[ _jogador_atual ] ->cartas_jogaveis(carta_atual) == 0 ){
-			  std::cout << std::endl << "O jogador " << _jogadores[ _jogador_atual ]->get_nome() <<" nao tem cartas jogaveis e teve que comprar uma\n " << std::endl;
-			  _jogadores[ _jogador_atual ]->compra_carta(*_baralho);
-			  //caso tenha comprado uma carta jogavel(valida)
-			  if (_jogadores[ _jogador_atual ] ->cartas_jogaveis(carta_atual) != 0 ){
-				  return rodada();
-			  }
-			  this->passa_rodada();
-			  return 1;
-		  }
-		  else if (carta_atual->get_valor() == COMPRA_2 &&_jogadores[this->_jogador_atual]->qtd_de_carta(COMPRA_2) > 0 && carta_atual->get_jogador_alvo() == _jogador_atual){
-			  escolhida =_jogadores[_jogador_atual]->rebate(COMPRA_2);
-		  }
-		  else if (carta_atual->get_valor() == COMPRA_4   &&_jogadores[this->_jogador_atual]->qtd_de_carta(COMPRA_4) > 0 && carta_atual->get_jogador_alvo() == _jogador_atual){
-		 	  escolhida =_jogadores[_jogador_atual]->rebate(COMPRA_4);
-		  }
-		  else{
-        //o jogador pode pular a rodada
-        _jogadores[_jogador_atual]->print_mao();
-       if(!_jogadores[_jogador_atual]->vai_jogar()){
-          std::cout << "O player "<<_jogadores[_jogador_atual]->get_nome()<<" pulou a vez\n";
-          _jogadores[ _jogador_atual ]->compra_carta(*_baralho);
-          this->passa_rodada();
-          return 1;
-        }
-        std::cout << "Carta atual : " ;
+		else if (carta_atual->get_valor() == COMPRA_2 &&_jogadores[this->_jogador_atual]->qtd_de_carta(COMPRA_2) > 0 && carta_atual->get_jogador_alvo() == _jogador_atual){
+			escolhida =_jogadores[_jogador_atual]->rebate(COMPRA_2);
+		}
+		else if (carta_atual->get_valor() == COMPRA_4   &&_jogadores[this->_jogador_atual]->qtd_de_carta(COMPRA_4) > 0 && carta_atual->get_jogador_alvo() == _jogador_atual){
+			escolhida =_jogadores[_jogador_atual]->rebate(COMPRA_4);
+		}
+		else{
+        	//o jogador pode pular a rodada
+        	_jogadores[_jogador_atual]->print_mao();
+       		if(!_jogadores[_jogador_atual]->vai_jogar()){
+          		std::cout << "O player "<<_jogadores[_jogador_atual]->get_nome()<<" pulou a vez\n";
+          		_jogadores[ _jogador_atual ]->compra_carta(*_baralho);
+          		this->passa_rodada();
+          		return 1;
+        	}
+       	 	std::cout << "Carta atual : " ;
 		    carta_atual->print_carta();
-			  escolhida =_jogadores[ _jogador_atual ]->jogada( carta_atual );
-		  }
-
-		  if(_jogadores[_jogador_atual]->num_cartas() == 0){
-			  std::cout << "Acabou "<<_jogadores[_jogador_atual]->get_nome() << " e o campeao" << std::endl;
-			  return 0;
-		  }
-		  _pilha_de_cartas.push_back(escolhida);
-		  this->efeitos_de_carta(escolhida);
-		  this->passa_rodada();
-		  return 1;
+			escolhida =_jogadores[ _jogador_atual ]->jogada( carta_atual );
+		}
+		if(_jogadores[_jogador_atual]->num_cartas() == 0){
+			std::cout << "Acabou "<<_jogadores[_jogador_atual]->get_nome() << " e o campeao" << std::endl;
+			return 0;
+		}
+		_pilha_de_cartas.push_back(escolhida);
+		this->efeitos_de_carta(escolhida);
+		this->passa_rodada();
+		return 1;
 	}
 	void Jogo::efeitos_de_carta(Carta *escolhida){
 
@@ -190,9 +188,8 @@
 	}
 	void Jogo::passa_rodada(){
 		this->_jogador_atual = (this->_jogador_atual + this->_sentido) % (this->_n_jogadores + this->_n_bots);
-		if (this->_jogador_atual < 0){
+		if (this->_jogador_atual < 0)
 			this->_jogador_atual += (this->_n_jogadores + this->_n_bots);
-		}
 	}
 	void Jogo::repoe_baralho(){
 		std::cout<<"Acabou as carta e a pilha foi reembaralhada" <<std::endl;
@@ -222,6 +219,3 @@
 			_jogadores[i] = aux;
 		}
 	}
-	
-
-
