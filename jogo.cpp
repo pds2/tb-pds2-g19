@@ -104,18 +104,19 @@
 			escolhida =_jogadores[_jogador_atual]->rebate(COMPRA_4);
 		}
 		else{
-        	//o jogador pode pular a rodada
-        	_jogadores[_jogador_atual]->print_mao();
-       		if(!_jogadores[_jogador_atual]->vai_jogar()){
-          		std::cout << "O player "<<_jogadores[_jogador_atual]->get_nome()<<" pulou a vez\n";
-          		_jogadores[ _jogador_atual ]->compra_carta(*_baralho);
-          		this->passa_rodada();
-          		return 1;
-        	}
-       	 	std::cout << "Carta atual : " ;
-		    carta_atual->print_carta();
+        		//o jogador pode pular a rodada
+        		_jogadores[_jogador_atual]->print_mao();
+       			if(!_jogadores[_jogador_atual]->vai_jogar()){
+          			std::cout << "O player "<<_jogadores[_jogador_atual]->get_nome()<<" pulou a vez\n";
+          			_jogadores[ _jogador_atual ]->compra_carta(*_baralho);
+          			this->passa_rodada();
+          			return 1;
+        		}
+       	 		std::cout << "Carta atual : " ;
+		    	carta_atual->print_carta();
 			escolhida =_jogadores[ _jogador_atual ]->jogada( carta_atual );
 		}
+		
 		if(_jogadores[_jogador_atual]->num_cartas() == 0){
 			std::cout << "Acabou "<<_jogadores[_jogador_atual]->get_nome() << " e o campeao" << std::endl;
 			return 0;
