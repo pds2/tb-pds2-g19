@@ -31,7 +31,7 @@
       	to_return = _mao[i];
       	_mao.erase(_mao.begin() + i);
       	std::cout << "O " << this->get_nome() << " jogou : ";
-      	_mao[i]->print_carta();
+      	to_return->print_carta();
       	//std::this_thread::sleep_for(std::chrono::seconds(3));
       	return to_return;
       }
