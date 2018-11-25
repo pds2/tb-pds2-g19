@@ -41,7 +41,7 @@
 			novo_jogador->print_mao();
 			this->_jogadores.push_back(novo_jogador);
 			std::cin.clear();
-		}	
+		}
 		for(int i = 0; i < _n_bots; i++ ){
 			Bot  *novo_bot = new Bot(i + 1);
 			for (int j = 0;j < MAO_INICIAL;j++)
@@ -49,7 +49,7 @@
 			novo_bot->print_mao();
 			this->_jogadores.push_back(novo_bot);
 		}
-		this->randomizar_jogadores();
+		if(_n_bots>=2)this->randomizar_jogadores();
 		_baralho->retira_especial_do_topo();
 		_pilha_de_cartas.push_back(_baralho->get_ultima_carta());
 		_baralho->remove_fim();
@@ -87,7 +87,7 @@
 
 		if(_baralho->get_tamanho() == 0)
 			this->repoe_baralho();
-		
+
 		if (_jogadores[ _jogador_atual ] ->cartas_jogaveis(carta_atual) == 0 ){
 			std::cout << std::endl << "O jogador " << _jogadores[ _jogador_atual ]->get_nome() <<" nao tem cartas jogaveis e teve que comprar uma\n " << std::endl;
 			_jogadores[ _jogador_atual ]->compra_carta(*_baralho);
@@ -98,9 +98,29 @@
 			return 1;
 		}
 		else if (carta_atual->get_valor() == COMPRA_2 &&_jogadores[this->_jogador_atual]->qtd_de_carta(COMPRA_2) > 0 && carta_atual->get_jogador_alvo() == _jogador_atual){
-			escolhida =_jogadores[_jogador_atual]->rebate(COMPRA_2);
+			std::cout<<"Jogaram um +2 em vc, vc pode rebater com o seu compra 2(jogando) ou vc pode comprar cartas e perder a vez(pulando)"<<std::endl;
+			_jogadores[_jogador_atual]->print_mao(COMPRA_2);
+			if(!_jogadores[_jogador_atual]->vai_jogar()){
+        std::cout << "O player "<<_jogadores[_jogador_atual]->get_nome()<<" pulou a vez\n";
+        int n_compra_2 = this->cnt_de_carta(COMPRA_2);
+        for(int i = 0;i <2*n_compra_2 ;i++)
+          this->_jogadores[_jogador_atual]->compra_carta(*_baralho);
+        this->passa_rodada();
+        return 1;
+        }
+        escolhida =_jogadores[_jogador_atual]->rebate(COMPRA_2);
 		}
 		else if (carta_atual->get_valor() == COMPRA_4   &&_jogadores[this->_jogador_atual]->qtd_de_carta(COMPRA_4) > 0 && carta_atual->get_jogador_alvo() == _jogador_atual){
+			std::cout<<"Jogaram um +4 em vc, vc pode rebater com o seu compra 4(jogando) ou vc pode comprar cartas e perder a vez(pulando)"<<std::endl;
+			_jogadores[_jogador_atual]->print_mao(COMPRA_4);
+			if(!_jogadores[_jogador_atual]->vai_jogar()){
+        std::cout << "O player "<<_jogadores[_jogador_atual]->get_nome()<<" pulou a vez\n";
+        int n_compra_4 = this->cnt_de_carta(COMPRA_4);
+        for(int i = 0;i <2*n_compra_4 ;i++)
+          this->_jogadores[_jogador_atual]->compra_carta(*_baralho);
+        this->passa_rodada();
+        return 1;
+        }
 			escolhida =_jogadores[_jogador_atual]->rebate(COMPRA_4);
 		}
 		else{
@@ -116,7 +136,7 @@
 		    	carta_atual->print_carta();
 			escolhida =_jogadores[ _jogador_atual ]->jogada( carta_atual );
 		}
-		
+
 		if(_jogadores[_jogador_atual]->num_cartas() == 0){
 			std::cout << "Acabou "<<_jogadores[_jogador_atual]->get_nome() << " e o campeao" << std::endl;
 			return 0;
@@ -135,11 +155,14 @@
 		switch (escolhida->get_valor()){
 				case PULAR :
 						this->_jogador_atual = proximo_jogador;
+						std::cout<<"\nO jogador "<<_jogadores[_jogador_atual]->get_nome()<< " foi pulado\n";
 	 				break;
 
 	 			case REVERTER:
-		 				if (_n_jogadores == 2)
+		 				if (_n_jogadores+_n_bots == 2){
 		 					this->_jogador_atual = proximo_jogador;
+		 					std::cout<<"\nO jogador "<<_jogadores[_jogador_atual]->get_nome()<< " foi pulado\n";
+		 				}
 		 				else
 		 					this->_sentido = -_sentido;
 	 				break;
@@ -153,6 +176,7 @@
 							for(int i = 0;i <2*n_compra_2 ;i++)
 				 				this->_jogadores[proximo_jogador]->compra_carta(*_baralho);
 				 			this->_jogador_atual = proximo_jogador;
+				 			std::cout<<"\nO jogador "<<_jogadores[_jogador_atual]->get_nome()<< " comprou "<< n_compra_2*2<<" cartas e perdeu a vez\n";
 						}
 						else{}
 	 				 break;
@@ -167,6 +191,7 @@
 							for(int i = 0;i < 4*n_compra_4;i++)
 				 				this->_jogadores[proximo_jogador]->compra_carta(*_baralho);
 				 			this->_jogador_atual = proximo_jogador;
+				 			std::cout<<"\nO jogador "<<_jogadores[_jogador_atual]->get_nome()<< " comprou "<< n_compra_4*4 <<" cartas e perdeu a vez\n";
 						}
 				 		//escolhida->set_cor_coringa();
 	 				break;
@@ -214,7 +239,7 @@
 		Jogador *aux;
 		for (int i = _jogadores.size() - 1;i > 1;i--){
 			j = rand() % (i + 1);
-			//troca carta da posicão i com j  
+			//troca carta da posicão i com j
 			aux = _jogadores[j];
 			_jogadores[j] = _jogadores[i];
 			_jogadores[i] = aux;
