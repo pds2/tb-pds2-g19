@@ -5,8 +5,11 @@
 
 
 	class Bot : public Jogador {
+		private:
+			static int _n_bots;
+			const Jogo* _jogo;
 		public:
-			Bot(int numero);
+			Bot(Jogo *jogo);
 			//~Bot();
 			virtual Carta* jogada (Carta *atual) override;
 			virtual Carta* rebate(char valor) override;

@@ -23,6 +23,7 @@
 			~Jogo();
 			//METODOS
 			int get_tamanho() const;
+			//int get_sentido() const;
 			void print_Jogo ();
 			int rodada();
 			void efeitos_de_carta(Carta *atual);
@@ -32,6 +33,7 @@
 			void inicia_jogo();
 			void randomizar_jogadores();
 
+			void inicializa_jogadores();
 	};
 
 
