@@ -105,6 +105,7 @@
         int n_compra_2 = this->cnt_de_carta(COMPRA_2);
         for(int i = 0;i <2*n_compra_2 ;i++)
           this->_jogadores[_jogador_atual]->compra_carta(*_baralho);
+	std::cout<<"\nO jogador "<<_jogadores[_jogador_atual]->get_nome()<< " comprou "<< n_compra_2*2 <<" cartas e perdeu a vez\n";
         this->passa_rodada();
         return 1;
         }
@@ -118,6 +119,7 @@
         int n_compra_4 = this->cnt_de_carta(COMPRA_4);
         for(int i = 0;i <2*n_compra_4 ;i++)
           this->_jogadores[_jogador_atual]->compra_carta(*_baralho);
+	std::cout<<"\nO jogador "<<_jogadores[_jogador_atual]->get_nome()<< " comprou "<< n_compra_4*4 <<" cartas e perdeu a vez\n";
         this->passa_rodada();
         return 1;
         }
