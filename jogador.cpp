@@ -107,7 +107,6 @@
 	Carta* Jogador::rebate(char valor){
 		Carta value(' ',valor);
 		int pos = 0;
-		this->print_mao(valor);
 
 		std::cout<<"Escolha a posicao da carta ";
 		value.print_carta_valor();
@@ -166,6 +165,6 @@
     if(jogador_n_quer_jogar=='p')return false;
     else if(jogador_n_quer_jogar=='j')return true;
     else return false;
-  }	
+  }
 
 
