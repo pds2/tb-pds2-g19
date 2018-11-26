@@ -43,7 +43,6 @@
 		 int pos;
 		std::cin >> pos;
 
-		//EXECAO DE ENTRADA INVALIDA TRATADA
 		while( std::cin.fail() || pos < 0 || pos > this->num_cartas()-1  ){
 			if( std::cin.fail()){
 				std::cin.clear();
@@ -116,7 +115,7 @@
 		value.print_carta_valor();
 		std::cout <<" de sua mao para jogar :" << std::endl;
 		std::cin >> pos;
-		//tratamento de entrada do usuario
+
 		while( std::cin.fail() || pos < 0 || pos > this->num_cartas()-1 || _mao[pos]->get_valor() != valor){
 			if( std::cin.fail()){
 				std::cin.clear();
@@ -139,7 +138,7 @@
 		if (escolhida->get_cor() == ESPECIAL){
 			std::cout << " Escolha a cor que deseja entre (r,b,g,y) : " << std::endl;
 			std::cin >> cor;
-			//EXCECAO DE ENTRADA INVALIDA TRATADA
+
 			while(std::cin.fail() || (cor != 'r' && cor != 'b' && cor != 'g' && cor != 'y')){
 				if( std::cin.fail()){
 					std::cin.clear();

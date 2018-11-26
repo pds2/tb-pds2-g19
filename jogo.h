@@ -26,7 +26,7 @@
 			int get_sentido() const;
 			int get_jogador_atual() const;
 			int get_n_jogadores() const;
-			std::list <Carta*> get_pilha() const;
+			Carta* get_carta_atual() const;
 			Jogador* get_jogador(int n) const;
 			void print_Jogo ();
 			int rodada();

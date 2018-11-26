@@ -63,15 +63,12 @@
 		return _baralho.size();
 	}
 	
-	void Baralho::embaralhar(){
-		//The modern algorithm of Fisher–Yates shuffle para embaralhar 
-		//LINK : 	
+	void Baralho::embaralhar(){ 	
 		srand (time(NULL));
 		int j = 0;
 		Carta *aux;
 		for (int i = _baralho.size() - 1;i > 1;i--){
-			j = rand() % (i + 1);
-			//troca carta da posicão i com j  
+			j = rand() % (i + 1);  
 			aux = _baralho[j];
 			_baralho[j] = _baralho[i];
 			_baralho[i] = aux;
@@ -98,8 +95,7 @@
 			this->embaralhar();
 		}
 	}
-	//////////
 	void Baralho::adiciona_carta(Carta* carta){
 		_baralho.push_back(carta);
 	}
-	//////////
+

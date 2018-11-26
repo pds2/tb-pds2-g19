@@ -81,8 +81,8 @@
 	int Jogo::get_n_jogadores() const{
 		return _n_jogadores;
 	}
-	std::list<Carta*> Jogo::get_pilha() const{
-		return _pilha_de_cartas;
+	Carta* Jogo::get_carta_atual() const{
+		return _pilha_de_cartas.back();
 	}
 	Jogador* Jogo::get_jogador(int n) const{
 		return _jogadores[n];
@@ -110,6 +110,7 @@
 			return 1;
 		}
 		else if (carta_atual->get_valor() == COMPRA_2 &&_jogadores[this->_jogador_atual]->qtd_de_carta(COMPRA_2) > 0 && carta_atual->get_jogador_alvo() == _jogador_atual){
+			_jogadores[_jogador_atual]->print_mao();
 			std::cout<<"Está vindo um sequencia de "<< this->cnt_de_carta(COMPRA_2)<<" +2 em vc, vc pode rebater com um compra 2(jogando) ou vc pode comprar "<< 2*this->cnt_de_carta(COMPRA_2) <<" cartas e perder a vez(pulando)"<<std::endl;
 			_jogadores[_jogador_atual]->print_mao(COMPRA_2);
 			if(!_jogadores[_jogador_atual]->vai_jogar())
@@ -117,6 +118,7 @@
         	escolhida =_jogadores[_jogador_atual]->rebate(COMPRA_2);
 		}
 		else if (carta_atual->get_valor() == COMPRA_4   &&_jogadores[this->_jogador_atual]->qtd_de_carta(COMPRA_4) > 0 && carta_atual->get_jogador_alvo() == _jogador_atual){
+			_jogadores[_jogador_atual]->print_mao();
 			std::cout<<"Está vindo um sequencia de "<< this->cnt_de_carta(COMPRA_4) <<" +4 em vc, vc pode rebater com o seu compra 4(jogando) ou vc pode comprar "<< 4*this->cnt_de_carta(COMPRA_2) <<" cartas e perder a vez(pulando)"<<std::endl;
 			_jogadores[_jogador_atual]->print_mao(COMPRA_4);
 			if(!_jogadores[_jogador_atual]->vai_jogar())
@@ -153,13 +155,13 @@
 		switch (escolhida->get_valor()){
 				case PULAR :
 						this->_jogador_atual = proximo_jogador;
-						std::cout<<"\nO jogador "<<_jogadores[_jogador_atual]->get_nome()<< " foi pulado\n";
+						std::cout<<"\n\nO jogador "<<_jogadores[_jogador_atual]->get_nome()<< " foi pulado\n\n";
 	 				break;
 
 	 			case REVERTER:
 		 				if (_n_jogadores +_n_bots == 2){
 		 					this->_jogador_atual = proximo_jogador;
-		 					std::cout<<"\nO jogador "<<_jogadores[_jogador_atual]->get_nome()<< " foi pulado\n";
+		 					std::cout<<"\n\nO jogador "<<_jogadores[_jogador_atual]->get_nome()<< " foi pulado\n\n";
 		 				}
 		 				else
 		 					this->_sentido = -_sentido;
@@ -214,10 +216,10 @@
 	void Jogo::inicia_jogo(){
 		int i = 0;
 		while (this->rodada()){
-			//std::cout << "Fim Da Rodada " << i <<std::endl;
+			std::cout << "Fim Da Rodada " << i << "---------------------------------------------------" <<std::endl;
 			i++;
 		}
-		//std::cout << "fim de jogo. fim Rodada " << i <<std::endl;
+		std::cout << "fim de jogo. fim Rodada " << i <<  "---------------------------------------------------" <<std::endl;
 	}
 	void Jogo::randomizar_jogadores(){
 		srand (time(NULL));
@@ -225,11 +227,15 @@
 		Jogador *aux;
 		for (int i = _jogadores.size() - 1;i > 1;i--){
 			j = rand() % (i + 1);
-			//troca jogador da posicão i com j
 			aux = _jogadores[j];
 			_jogadores[j] = _jogadores[i];
 			_jogadores[i] = aux;
 		}
+		std::cout<<"\nA ordem dos jogadores e: ";
+		for(int i=0;i<_jogadores.size();i++){
+			std::cout<< _jogadores[i]->get_nome()<< " ";
+		}
+		std::cout << std::endl;
 	}
 	void Jogo::inicializa_jogadores(){
 		std::string nome_jogador;
@@ -246,7 +252,6 @@
 		for(int i = 0; i < _n_bots; i++ ){
 			Bot  *novo_bot = new Bot(this);
 			novo_bot->compra_carta(*_baralho,MAO_INICIAL);
-			novo_bot->print_mao();
 			this->_jogadores.push_back(novo_bot);
 		}
 	}	
@@ -256,14 +261,14 @@
 			if(n_compra_2*2 > _baralho->get_tamanho())
 				this->repoe_baralho();
 			this->_jogadores[jogador]->compra_carta(*_baralho,2*n_compra_2);
-			std::cout<<"\nO jogador "<<_jogadores[jogador]->get_nome()<< " comprou "<< n_compra_2*2 <<" cartas e perdeu a vez\n";
+			std::cout<<"\n\nO jogador "<<_jogadores[jogador]->get_nome()<< " comprou "<< n_compra_2*2 <<" cartas e perdeu a vez\n\n";
 		}
 		if (valor == COMPRA_4){
 			int n_compra_4 = this->cnt_de_carta(COMPRA_4);        
 			if(n_compra_4*4 > _baralho->get_tamanho())
 				this->repoe_baralho();
 			this->_jogadores[jogador]->compra_carta(*_baralho,4*n_compra_4);
-			std::cout<<"\nO jogador "<<_jogadores[jogador]->get_nome()<< " comprou "<< n_compra_4*4 <<" cartas e perdeu a vez\n";
+			std::cout<<"\n\nO jogador "<<_jogadores[jogador]->get_nome()<< " comprou "<< n_compra_4*4 <<" cartas e perdeu a vez\n\n";
 		}
 		this->passa_rodada();
 
