@@ -21,7 +21,7 @@
 			std::string get_nome() const;
 			void set_nome(std::string nome);
 			int num_cartas() const;
-			void compra_carta(Baralho &baralho);
+			void compra_carta(Baralho &baralho,int n = 1);
 			virtual Carta* jogada (Carta *atual);
 			void print_mao() const;
 			void print_mao(char valor) const;

@@ -23,7 +23,11 @@
 			~Jogo();
 			//METODOS
 			int get_tamanho() const;
-			//int get_sentido() const;
+			int get_sentido() const;
+			int get_jogador_atual() const;
+			int get_n_jogadores() const;
+			std::list <Carta*> get_pilha() const;
+			Jogador* get_jogador(int n) const;
 			void print_Jogo ();
 			int rodada();
 			void efeitos_de_carta(Carta *atual);
@@ -34,6 +38,8 @@
 			void randomizar_jogadores();
 
 			void inicializa_jogadores();
+			int efeito_compra(char valor,int jogador);
+			void print_carta_atual();
 	};
 
 

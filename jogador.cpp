@@ -25,11 +25,16 @@
 	int Jogador::num_cartas() const{
 		return _mao.size();
 	}
-	void Jogador::compra_carta(Baralho &baralho){
-		if(baralho.get_tamanho() > 0 ){
-			_mao.push_back(baralho.get_ultima_carta());
-			baralho.remove_fim();
+	void Jogador::compra_carta(Baralho &baralho,int n){
+		if(baralho.get_tamanho() >= n ){
+			for (int i = 0 ; i < n;i++ ){
+				_mao.push_back(baralho.get_ultima_carta());
+				baralho.remove_fim();
+			}
+			//std::cout<<"\nO jogador "<<_nome<< " comprou "<< n << " carta(s)";	
 		}
+		else 
+			std::cout<<"Acabaram as cartas do baralho e nao foi possivel comprar " <<std::endl; 
 	}
 
 	Carta* Jogador::jogada (Carta *atual){
@@ -52,7 +57,6 @@
 		Carta *to_return = _mao[pos];
 
 		if (to_return->get_cor() == ESPECIAL || to_return->get_cor() == atual->get_cor() || to_return->get_valor() == atual->get_valor()){
-			//primeiro  o ponteiro é  apontado para nullptr para que o metodo erase() nao apague o objeto alocado no heap
 			_mao.erase(_mao.begin() + pos);
 			std::cin.clear();
 			return to_return;
