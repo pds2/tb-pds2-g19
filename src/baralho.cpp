@@ -15,8 +15,8 @@
 	Baralho::Baralho(){
 		Carta *ptr1,*ptr2;
 
-		char cores[4] = { RED , YELLOW , BLUE , GREEN };
-		char especiais_com_cores[3] = { PULAR , REVERTER , COMPRA_2 };
+		char cores[N_CORES] = { RED , YELLOW , BLUE , GREEN };
+		char especiais_com_cores[N_ESPECIAIS_COLORIDAS] = { PULAR , REVERTER , COMPRA_2 };
 		char especiais[2] = { COMPRA_4 , CORINGA };
 		//incliuindo carta com cores 
 		for (int i = 0; i < N_CORES ;i++){
@@ -63,15 +63,12 @@
 		return _baralho.size();
 	}
 	
-	void Baralho::embaralhar(){
-		//The modern algorithm of Fisher–Yates shuffle para embaralhar 
-		//LINK : 	
+	void Baralho::embaralhar(){ 	
 		srand (time(NULL));
 		int j = 0;
 		Carta *aux;
 		for (int i = _baralho.size() - 1;i > 1;i--){
-			j = rand() % (i + 1);
-			//troca carta da posicão i com j  
+			j = rand() % (i + 1);  
 			aux = _baralho[j];
 			_baralho[j] = _baralho[i];
 			_baralho[i] = aux;
@@ -86,7 +83,6 @@
 		}
 	}
 	void Baralho::remove_fim(){
-		_baralho[_baralho.size() - 1] = nullptr;
 		_baralho.pop_back();
 	}
 	Carta* Baralho::get_ultima_carta(){
@@ -99,8 +95,7 @@
 			this->embaralhar();
 		}
 	}
-	//////////
 	void Baralho::adiciona_carta(Carta* carta){
 		_baralho.push_back(carta);
 	}
-	//////////
+

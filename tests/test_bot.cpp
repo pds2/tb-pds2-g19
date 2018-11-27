@@ -1,0 +1,5 @@
+#include "doctest.h"
+#include "carta.h"
+#include "baralho.h"
+#include "jogador.h"
+#include "bot.h"

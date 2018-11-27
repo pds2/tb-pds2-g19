@@ -6,9 +6,9 @@
 
 
 int main(){
-
-	 Jogo UNO;
-	 UNO.inicia_jogo();
+ 
+	 Jogo UNO ;
+	 UNO.inicia_jogo(); 
 		
 	return 0;
 }
