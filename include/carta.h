@@ -29,7 +29,8 @@ class Carta{
 		Carta(char cor,char valor);
 		~Carta();
 		
-		//METODOS		
+		//METODOS	
+
 		char get_cor() const;
 		char get_valor() const;
 		void set_cor(char cor);
@@ -42,6 +43,8 @@ class Carta{
 		void set_jogador_alvo(int pos);
 
 		void tira_cor_especial();
+
+		bool carta_valida(char cor,char valor);
 };
 
 #endif

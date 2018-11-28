@@ -69,7 +69,7 @@
 			return to_return;
 		}
 		else{
-			std::cout<<"ERRO carta errada" << std::endl;
+			std::cout<<"A carta esolhida nao pode ser jogada" << std::endl;
 			return this->jogada(atual);
 		}
 	}
@@ -120,7 +120,7 @@
 	}
 	
 	Carta* Jogador::rebate(char valor){
-		Carta value(' ',valor);
+		Carta value('r',valor);
 		int pos = 0;
 
 		std::cout<<"Escolha a posicao da carta ";

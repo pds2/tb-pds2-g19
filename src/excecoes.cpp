@@ -1,21 +1,21 @@
-#include excecoes.cpp
+#include "excecoes.h"
 
   	const char* CartaInvalidaException::what() const noexcept{
-          return "Carta Inválida"
+          return "Carta Inválida";
     }
 
   	const char* BaralhoInvalidoException::what() const noexcept{
-          return "Baralho Inválido"
+          return "Baralho Inválido";
     }
 
   	const char* JogadorInvalidoException::what() const noexcept{
-          return "Jogador Inválido"
+          return "Jogador Inválido";
     }
 
   	const char* BotInvalidoException::what() const noexcept{
-          return "Bot Inválido"
+          return "Bot Inválido";
     }
 
   	const char* JogoInvalidoException::what() const noexcept{
-          return "Jogo Inválido"
+          return "Jogo Inválido";
     }

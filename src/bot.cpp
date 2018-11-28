@@ -109,7 +109,7 @@
 		if(n_green>=n_blue&&n_green>=n_red&&n_green>=n_yellow)cor = GREEN;
 		if(n_yellow>=n_blue&&n_yellow>=n_green&&n_yellow>=n_red)cor = YELLOW;
 		
-		Carta collor(cor,cor);
+		Carta collor(cor,'0');
 		std::cout << "O " << this->get_nome() << " escolheu : ";
 		collor.print_carta_cor();
 		std::cout <<std::endl;

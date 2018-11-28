@@ -1,12 +1,14 @@
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include <limits.h>
 #include "jogo.h"
 #include "carta.h"
 #include "baralho.h"
 #include "jogador.h"
 #include "bot.h"
-#include <cstdlib>
-#include <ctime>
-#include <limits.h>
+#include "excecoes.h"
+
 
 #define MAO_INICIAL 7
 #define MAX_NAME 80
@@ -149,10 +151,18 @@
 			std::cout << "Acabou "<<_jogadores[_jogador_atual]->get_nome() << " e o campeao" << std::endl;
 			return 0;
 		}
-		_pilha_de_cartas.push_back(escolhida);
-		this->efeitos_de_carta(escolhida);
-		this->passa_rodada();
-		return 1;
+		if (escolhida->get_cor() == ESPECIAL || escolhida->get_cor() == carta_atual->get_cor() || escolhida->get_valor() == carta_atual->get_valor()){
+			_pilha_de_cartas.push_back(escolhida);
+			this->efeitos_de_carta(escolhida);
+			this->passa_rodada();
+			return 1;
+		}		
+		else{
+
+			std::cout << "Programador : Tal carta nao pode ser jogada" << std::endl;
+			throw JogoInvalidoException();
+			return 0;
+		}
 	}
 	
 	void Jogo::efeitos_de_carta(Carta *escolhida){

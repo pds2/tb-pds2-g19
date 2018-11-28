@@ -2,18 +2,20 @@
 #include "carta.h"
 #include "baralho.h"
 #include <limits.h>
+#include "excecoes.h"
 
 	//CONSTRUTOR E DESTRUTOR
 
 	Carta::Carta(){}
 	
 	Carta::Carta(char cor,char valor){
-		if(cor != "RED" && cor != "BLUE" && COR != "GREEN" && cor != "YELLOW" && cor != "ESPECIAL") throw CartaInvalidaException();
-		if(valor != "0" && valor != "1" && valor != "2" && valor != "3" && valor != "4" && valor != "5" && valor != "6" && valor != "7" && valor != "8" && valor != "9" && ) throw CartaInvalidaException();
-		
-		_cor = cor;
-		_valor = valor;
-		_jogador_alvo = -1;
+		if(!carta_valida(cor,valor)) 
+			throw CartaInvalidaException();
+		else {
+			_cor = cor;
+			_valor = valor;
+			_jogador_alvo = -1;
+		}
 	}
 	
 	Carta::~Carta(){}
@@ -29,7 +31,7 @@
 	}
 	
 	void Carta::set_cor(char cor){
-		if(cor != "RED" && cor != "BLUE" && COR != "GREEN" && cor != "YELLOW" && cor != "ESPECIAL") throw CartaInvalidaException();
+		if(cor != RED && cor != BLUE && cor != GREEN && cor != YELLOW ) throw CartaInvalidaException();
 		this->_cor = cor;
 	}
 	
@@ -85,7 +87,7 @@
 		 		std::cout << "  especial ";
 		 		break;
 		 	default : 
-		 		std::cout << " ERRO COR NAO POSSIVEL ";		 		
+		 		std::cout << "Essa cor nao possivel ";		 		
 		}
 	}
 
@@ -102,9 +104,27 @@
 	void Carta::set_jogador_alvo(int pos){
 		this->_jogador_alvo = pos;
 	}
-
 	void Carta::tira_cor_especial(){
 			//quando o baralho for reembaralhado as cartas especiais devem ter suas cores voltadas para ESPECIAL
 			if ((_valor == CORINGA || _valor == COMPRA_4) && _cor != ESPECIAL )
 				_cor = ESPECIAL;
 	}	
+
+	bool Carta::carta_valida(char cor,char valor){
+		char cartas_validas_valor[]= {'0','1','2','3','4','5','6','7','8','9',COMPRA_2,REVERTER,PULAR};
+		char cores_validas[] = {RED,YELLOW,GREEN,BLUE};
+		char cartas_validas_especiais_valor[] = {CORINGA,COMPRA_4};//tem que ter a cor ESPECIAL
+		char cor_especial = ESPECIAL;
+
+		for (int i : cartas_validas_valor)
+			if (valor == i)
+				for(int j : cores_validas)
+					if(cor == j)
+						return true;
+				
+		for(int i : cartas_validas_especiais_valor)
+			if (valor == i && cor == cor_especial)
+				return true;
+
+		return false;
+	}
