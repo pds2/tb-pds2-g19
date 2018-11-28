@@ -8,10 +8,11 @@
 #include <ctime>
 #include <limits.h>
 
-
 #define MAO_INICIAL 7
 #define MAX_NAME 80
 #define MAX_PLAYERS 10
+
+	//CONSTRUTOR E DESTRUTOR
 
 	Jogo::Jogo(){
 		this->_baralho = new Baralho;
@@ -68,22 +69,29 @@
 		 }
 		delete _baralho;
 	}
+	
 	//METODOS
+	
 	int Jogo::get_tamanho() const{
 		return _pilha_de_cartas.size();
 	}
+	
 	int Jogo::get_sentido() const{
 		return _sentido;
 	}
+	
 	int Jogo::get_jogador_atual() const{
 		return _jogador_atual;
 	}
+	
 	int Jogo::get_n_jogadores() const{
 		return _n_jogadores;
 	}
+	
 	Carta* Jogo::get_carta_atual() const{
 		return _pilha_de_cartas.back();
 	}
+	
 	Jogador* Jogo::get_jogador(int n) const{
 		return _jogadores[n];
 	}
@@ -146,6 +154,7 @@
 		this->passa_rodada();
 		return 1;
 	}
+	
 	void Jogo::efeitos_de_carta(Carta *escolhida){
 
 		int proximo_jogador = (this->_jogador_atual + this->_sentido) % (this->_n_jogadores + this->_n_bots);
@@ -185,6 +194,7 @@
 	 				break;
 		}
 	}
+	
 	int Jogo::cnt_de_carta(char valor){
 		std::list<Carta*>::reverse_iterator rit = _pilha_de_cartas.rbegin();
 		int contador = 0;
@@ -200,6 +210,7 @@
 		if (this->_jogador_atual < 0)
 			this->_jogador_atual += (this->_n_jogadores + this->_n_bots);
 	}
+	
 	void Jogo::repoe_baralho(){
 		std::cout<<"Acabaram as cartas e a pilha foi reembaralhada" <<std::endl;
 		Carta *carta_atual =  _pilha_de_cartas.back();
@@ -214,6 +225,7 @@
 		_baralho->embaralhar();
 		_pilha_de_cartas.push_back(carta_atual);
 	}
+	
 	void Jogo::inicia_jogo(){
 		int i = 1;
 		while (this->rodada()){
@@ -222,6 +234,7 @@
 		}
 		std::cout << "\n\n-------------------------- fim de jogo. O jogo acabou na rodada " << i <<  " --------------------------\n\n" <<std::endl;
 	}
+	
 	void Jogo::randomizar_jogadores(){
 		srand (time(NULL));
 		int j = 0;
@@ -238,6 +251,7 @@
 		}
 		std::cout << std::endl;
 	}
+	
 	void Jogo::inicializa_jogadores(){
 		std::string nome_jogador;
 		std::cin.ignore(INT_MAX,'\n');
@@ -255,7 +269,8 @@
 			novo_bot->compra_carta(*_baralho,MAO_INICIAL);
 			this->_jogadores.push_back(novo_bot);
 		}
-	}	
+	}
+	
 	int Jogo::efeito_compra(char valor,int jogador){
 		if (valor == COMPRA_2){
 			int n_compra_2 = this->cnt_de_carta(COMPRA_2);
@@ -285,4 +300,3 @@
 		
 		return 1;
 	}
-	

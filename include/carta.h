@@ -1,4 +1,3 @@
-
 #include <string>
 
 #ifndef CARTA_H
@@ -14,11 +13,8 @@
 #define REVERTER '#'
 #define COMPRA_2 '$'
 
-
 #define CORINGA  '%'
 #define COMPRA_4 '*'
-	
-
 
 class Carta{
 
@@ -26,14 +22,14 @@ class Carta{
 		char _cor;
 		char _valor;
 		int _jogador_alvo;
+		
 	public:
 		//CONTRUTORES E DESTRUTOR 
 		Carta();
 		Carta(char cor,char valor);
 		~Carta();
 		
-		//METODOS
-		
+		//METODOS		
 		char get_cor() const;
 		char get_valor() const;
 		void set_cor(char cor);
@@ -46,10 +42,6 @@ class Carta{
 		void set_jogador_alvo(int pos);
 
 		void tira_cor_especial();
-
-
 };
-
-
 
 #endif

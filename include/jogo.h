@@ -7,7 +7,6 @@
 	class Carta;
 	class Jogador;
 
-
 	class Jogo{
 		private:
 			std::list <Carta*> _pilha_de_cartas;
@@ -19,8 +18,10 @@
 			int _n_bots;
 
 		public:
+			//CONTRUTOR E DESTRUTOR
 			Jogo();
 			~Jogo();
+			
 			//METODOS
 			int get_tamanho() const;
 			int get_sentido() const;
@@ -42,6 +43,5 @@
 			int efeito_compra(char valor,int jogador);
 			void print_carta_atual();
 	};
-
 
 #endif

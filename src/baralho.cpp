@@ -18,7 +18,7 @@
 		char cores[N_CORES] = { RED , YELLOW , BLUE , GREEN };
 		char especiais_com_cores[N_ESPECIAIS_COLORIDAS] = { PULAR , REVERTER , COMPRA_2 };
 		char especiais[2] = { COMPRA_4 , CORINGA };
-		//incliuindo carta com cores 
+		//incliuindo cartas com cores 
 		for (int i = 0; i < N_CORES ;i++){
 			//incluindo valores de 0 a 9
 			for(int j = 0; j < N_VALORES;j++){
@@ -28,12 +28,12 @@
 			}
 			//incluindo valores de 1 a 9
 			for(int j = 1; j < N_VALORES;j++){
-				// (j + 48) TRANFORMANDO INTEIRO EM ASCII
+				// (j + 48) transformando inteiro em ASCII
 				ptr1 = new Carta(cores[i],j + 48);
 				_baralho.push_back(ptr1);
 
 			}
-			// iNCLUINDO PULAR REVERTER COMPRA_2	 X2
+			// incluindo PULAR, REVERTER, e COMPRA_2	 x2
 			for(int j = 0; j < N_ESPECIAIS_COLORIDAS;j++){
 				ptr1 = new Carta(cores[i],especiais_com_cores[j]);
 				_baralho.push_back(ptr1);
@@ -42,7 +42,7 @@
 
 			}
 		}
-		//INCLUINDO  8 ESPECIAS COMPRA_4 CORINGA 
+		//incluindo 8 especiais 4x COMPRA_4 e 4x CORINGA 
 		for (int i = 0; i < 2;i++){
 			for(int j = 0; j < N_ESPECIAIS;j++){
 				ptr1 = new Carta(ESPECIAL,especiais[i]);
@@ -52,13 +52,16 @@
 		}
 		this->embaralhar();
 	}
+	
 	Baralho::~Baralho(){
 		 while (!_baralho.empty()){
 		 	  delete _baralho[_baralho.size() - 1];
 		 	  _baralho.pop_back();
 		 }
 	}
+	
 	//METODOS
+	
 	int Baralho::get_tamanho() const{
 		return _baralho.size();
 	}
@@ -82,20 +85,22 @@
 			_baralho[i]->print_carta();
 		}
 	}
+	
 	void Baralho::remove_fim(){
 		_baralho.pop_back();
 	}
+	
 	Carta* Baralho::get_ultima_carta(){
 		return _baralho[_baralho.size() - 1];
 	}
+	
 	void Baralho::retira_especial_do_topo(){
-		//caso a primeira carta seja uma carta de efeito o baralho sera rebaralhado,
-		//nao é a soluçao mais elegante (inclusive pode fazer com ele seja embaralhado varias vezes mas funciona)
+		//caso a primeira carta a ser retirada do baralho no inicio do jogo seja uma carta de efeito, o baralho sera reembaralhado
 		while(_baralho.back()->get_valor()== PULAR || _baralho.back()->get_valor()== REVERTER || _baralho.back()->get_valor()== COMPRA_2 || _baralho.back()->get_cor()== ESPECIAL ){
 			this->embaralhar();
 		}
 	}
+	
 	void Baralho::adiciona_carta(Carta* carta){
 		_baralho.push_back(carta);
 	}
-

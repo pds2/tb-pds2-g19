@@ -8,6 +8,7 @@
 	class Baralho{
 		private:
 			std::vector<Carta*> _baralho;
+			
 		public:
 			//CONTRUTOR E DESTRUTOR
 			Baralho();
@@ -20,10 +21,7 @@
 			void remove_fim();
 			Carta* get_ultima_carta();
 			void retira_especial_do_topo();
-			//////////
 			void adiciona_carta(Carta* carta);
-			//////////
-	};
-	
+	};	
 
-#endif 
+#endif

@@ -12,7 +12,9 @@
 		protected:
 			std::string _nome;
 			std::vector<Carta*> _mao;
+			
 		public:
+			//CONTRUTOR E DESTRUTOR
 			Jogador();
 			Jogador(std::string nome);
 			virtual ~Jogador();
@@ -31,7 +33,5 @@
 			virtual void escolhe_cor(Carta *escolhida);
 			virtual bool vai_jogar();
 	};
-
-
 
 #endif
