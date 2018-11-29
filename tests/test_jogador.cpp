@@ -23,16 +23,6 @@
         Baralho a;
         Jogador b("Joao");
 
-        b.compra_carta(*a, MAO_INICIAL);
+        b.compra_carta(a, MAO_INICIAL);
         CHECK(b.num_cartas() == MAO_INICIAL);
-    }
-
-    TEST_CASE("Testando a Função cartas_jogaveis"){
-        Baralho a;
-        Jogador b("Joao");
-        Carta *c = new Carta(RED, '0');
-
-        b.compra_carta(*a, MAO_INICIAL);
-  
-        CHECK(b.cartas_jogaveis(c) == 7);
     }
