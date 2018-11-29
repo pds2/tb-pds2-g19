@@ -36,11 +36,7 @@ para o jogador que a usou, então se A e B estão jogando e A usa a carta PULAR,
 REVERTER, o próximo jogador será o B e a ordem passará a ser C, B, A. No caso de haverem apenas dois jogadores, essa carta tem 
 o efeito de voltar a jogada para o jogador que a usou, então se A e B estão jogando e A usa a carta REVERTER, o próximo jogador 
 será A de novo.
-**COMPRA 2**: Essa carta tem o efeito de fazer o jogador seguinte comprar duas cartas do baralho. Caso o jogador receba uma carta 
-COMPRA 2 e tenha outra na sua mão (de qualquer cor), ele pode jogá-la e assim, o jogador seguinte terá que comprar 4 cartas, 
-sendo que o atual será isento do efeito da carta. Se o jogador seguinte também possuir um COMPRA 2 em sua mão, ele também poderá 
-jogá-lo, fazendo o seu próximo comer 6 cartas e assim por diante. Ou seja, o efeito da carta é cumulativo. O jogador que sofrer o 
-efeito da carta perde a vez.
+**COMPRA 2**: Essa carta tem o efeito de fazer o jogador seguinte comprar duas cartas do baralho. Caso o jogador receba uma carta COMPRA 2 e tenha outra na sua mão (de qualquer cor), ele pode jogá-la e assim, o jogador seguinte terá que comprar 4 cartas, sendo que o atual será isento do efeito da carta. Se o jogador seguinte também possuir um COMPRA 2 em sua mão, ele também poderá jogá-lo, fazendo o seu próximo comer 6 cartas e assim por diante. Ou seja, o efeito da carta é cumulativo. O jogador que sofrer o efeito da carta perde a vez.
 
 ###### **Cartas Especiais**
 
