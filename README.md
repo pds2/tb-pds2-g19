@@ -14,11 +14,12 @@ No caso de haverem bots o jogador poderá escolher se a mão do bot será ou nã
 
 ## A Cada Rodada
 
-A cada rodada será impressa na tela a carta atual, o nome do jogador atual e as suas cartas. Caso o jogador não tenha cartas 
-jogáveis ele irá automaticamente comprar uma carta do baralho, se essa carta for jogável, ele pode depositá-la na pilha, senão 
-ele é pulado. Um aviso será impresso na tela dizendo que “O jogador X não tem cartas jogáveis e teve que comprar uma”. Caso o 
-jogador tenha cartas jogáveis ele será solicitado a escolher uma carta pelo seu índice de posição para ser jogada. Caso o jogador 
-escolha uma carta inválida ele será solicitado novamente, até que escolha uma carta válida.
+A cada rodada será impressa na tela a carta atual, o nome do jogador atual e as suas cartas e o jogador deverá informar se ele
+quer jogar nessa rodada ou comprar uma carta e perder a vez. Caso o jogador não tenha cartas jogáveis ele irá automaticamente comprar uma
+carta do baralho, se essa carta for jogável, ele pode depositá-la na pilha, senão ele é pulado. Um aviso será impresso na tela dizendo que
+“O jogador X não tem cartas jogáveis e teve que comprar uma”. Caso o jogador tenha cartas jogáveis ele será solicitado a escolher uma carta
+pelo seu índice de posição para ser jogada. Caso o jogador escolha uma carta inválida ele será solicitado novamente, até que escolha uma
+carta válida.
 
 ## Regra do Jogo
 
@@ -32,10 +33,9 @@ colocada na pilha se tiver a mesma cor, o mesmo valor da última carta da pilha,
 **PULAR**: Essa carta pula a vez do jogador seguinte, então se os jogadores A, B e C estão jogando (nessa ordem) e o A usa uma 
 carta PULAR, o próximo jogador será o C. No caso de haverem apenas dois jogadores, essa carta tem o efeito de voltar a jogada 
 para o jogador que a usou, então se A e B estão jogando e A usa a carta PULAR, o próximo jogador será A de novo.
-**REVERTER**: Carta que reverte o sentido do jogo. Se os jogadores A, B e C estão jogando nessa ordem e o C usa uma carta 
-REVERTER, o próximo jogador será o B e a ordem passará a ser C, B, A. No caso de haverem apenas dois jogadores, essa carta tem 
-o efeito de voltar a jogada para o jogador que a usou, então se A e B estão jogando e A usa a carta REVERTER, o próximo jogador 
-será A de novo.
+**REVERTER**: Carta que reverte o sentido do jogo. Se os jogadores A, B e C estão jogando nessa ordem e o C usa uma carta REVERTER, o
+próximo jogador será o B e a ordem passará a ser C, B, A. No caso de haverem apenas dois jogadores, essa carta tem o efeito de voltar a
+jogada para o jogador que a usou, então se A e B estão jogando e A usa a carta REVERTER, o próximo jogador será A de novo.
 **COMPRA 2**: Essa carta tem o efeito de fazer o jogador seguinte comprar duas cartas do baralho. Caso o jogador receba uma 
 carta COMPRA 2 e tenha outra na sua mão (de qualquer cor), ele pode jogá-la e assim, o jogador seguinte terá que comprar 4
 cartas, sendo que o atual será isento do efeito da carta. Se o jogador seguinte também possuir um COMPRA 2 em sua mão, ele
