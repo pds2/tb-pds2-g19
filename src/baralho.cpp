@@ -50,7 +50,6 @@
 
 			}
 		}
-		this->embaralhar();
 	}
 	
 	Baralho::~Baralho(){
