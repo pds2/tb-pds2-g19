@@ -1,11 +1,13 @@
 #include <iostream>
 #include <limits.h>
+
 #include "jogador.h"
 #include "carta.h"
 #include "jogo.h"
 #include "baralho.h"
 
 	//CONSTRUTOR E DESTRUTOR
+
 	bool Jogador::print_bots = false;
 
 	Jogador::Jogador(){}

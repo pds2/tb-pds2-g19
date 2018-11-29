@@ -1,4 +1,5 @@
 #include "jogador.h"
+
 #ifndef BOT_H
 #define BOT_H
 
@@ -6,7 +7,6 @@
 		private:
 			static int _n_bots;
 			const Jogo* _jogo;
-
 
 		public:
 			//CONTRUTOR E DESTRUTOR

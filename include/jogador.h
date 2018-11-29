@@ -1,8 +1,8 @@
-#ifndef JOGADOR_H
-#define JOGADOR_H
-
 #include <string>
 #include <vector>
+
+#ifndef JOGADOR_H
+#define JOGADOR_H
 
 	class Carta;
 	class Baralho;

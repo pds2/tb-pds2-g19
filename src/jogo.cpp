@@ -2,13 +2,14 @@
 #include <cstdlib>
 #include <ctime>
 #include <limits.h>
+
 #include "jogo.h"
 #include "carta.h"
 #include "baralho.h"
 #include "jogador.h"
 #include "bot.h"
-#include "excecoes.h"
 
+#include "excecoes.h"
 
 #define MAO_INICIAL 7
 #define MAX_NAME 80
@@ -33,7 +34,7 @@
 				std::cin.clear();
 				std::cin.ignore(INT_MAX,'\n');
 				fail_first_cin = true;
-				std::cout << "Valor nao valido para o numero de jogadores" << std::endl;
+				std::cout << "Valor invalido para o numero de jogadores" << std::endl;
 				continue;
 
 			}
@@ -44,7 +45,7 @@
 				std::cin.clear();
 				std::cin.ignore(INT_MAX,'\n');
 				fail_second_cin = true;
-				std::cout << "Valor nao valido para o numero de bots" << std::endl;
+				std::cout << "Valor invalido para o numero de bots" << std::endl;
 				continue;
 
 			}

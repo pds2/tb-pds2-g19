@@ -1,4 +1,5 @@
 #include <iostream>
+
 #include "carta.h"
 #include "baralho.h"
 #include "jogador.h"

@@ -1,7 +1,9 @@
 #include <iostream>
+#include <limits.h>
+
 #include "carta.h"
 #include "baralho.h"
-#include <limits.h>
+
 #include "excecoes.h"
 
 	//CONSTRUTOR E DESTRUTOR

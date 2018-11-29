@@ -1,6 +1,7 @@
 #include <iostream>
 #include <chrono>
 #include <thread>
+
 #include "jogador.h"
 #include "carta.h"
 #include "jogo.h"
@@ -8,7 +9,6 @@
 #include "bot.h"
 
 	int Bot::_n_bots = 0;
-
 
 	//CONSTRUTOR E DESTRUTOR
 
@@ -27,7 +27,6 @@
 		int n_participantes =  this->_n_bots + this->_jogo->get_n_jogadores();
 
 		int pos_proximo_jogador = (jogador_atual + sentido)% n_participantes;
-
 
 		if(pos_proximo_jogador  < 0)
 			pos_proximo_jogador += n_participantes;

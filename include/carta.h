@@ -16,35 +16,34 @@
 #define CORINGA  '%'
 #define COMPRA_4 '*'
 
-class Carta{
+	class Carta{
 
-	private:
-		char _cor;
-		char _valor;
-		int _jogador_alvo;
+		private:
+			char _cor;
+			char _valor;
+			int _jogador_alvo;
 		
-	public:
-		//CONTRUTORES E DESTRUTOR 
-		Carta();
-		Carta(char cor,char valor);
-		~Carta();
-		
-		//METODOS	
+		public:
+			//CONTRUTORES E DESTRUTOR 
+			Carta();
+			Carta(char cor,char valor);
+			~Carta();
 
-		char get_cor() const;
-		char get_valor() const;
-		void set_cor(char cor);
-		
-		void print_carta() const;
-		void print_carta_valor() const;
-		void print_carta_cor() const;
+			//METODOS
+			char get_cor() const;
+			char get_valor() const;
+			void set_cor(char cor);
 
-		int get_jogador_alvo() const;
-		void set_jogador_alvo(int pos);
+			void print_carta() const;
+			void print_carta_valor() const;
+			void print_carta_cor() const;
 
-		void tira_cor_especial();
+			int get_jogador_alvo() const;
+			void set_jogador_alvo(int pos);
 
-		bool carta_valida(char cor,char valor);
-};
+			void tira_cor_especial();
+
+			bool carta_valida(char cor,char valor);
+	};
 
 #endif
