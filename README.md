@@ -2,7 +2,7 @@
 
 # UNO
 
-##Início do jogo
+## Início do jogo
 
 No início do jogo você será solicitado a especificar o número de jogadores (pessoas) e bots (jogadores simulados pelo programa) 
 separadamente. O total de jogadores mais bots deve estar entre 2 e 10. Logo depois serão pedidos os nomes dos jogadores 
@@ -12,7 +12,7 @@ a primeira carta que dará início ao jogo, que será impressa na primeira rodad
 distribuídas 7 cartas para cada jogador.
 No caso de haverem bots o jogador poderá escolher se a mão do bot será ou não impressa na tela a cada jogada.
 
-##A Cada Rodada
+## A Cada Rodada
 
 A cada rodada será impressa na tela a carta atual, o nome do jogador atual e as suas cartas. Caso o jogador não tenha cartas 
 jogáveis ele irá automaticamente comprar uma carta do baralho, se essa carta for jogável, ele pode depositá-la na pilha, senão 
@@ -20,14 +20,14 @@ ele é pulado. Um aviso será impresso na tela dizendo que “O jogador X não t
 jogador tenha cartas jogáveis ele será solicitado a escolher uma carta pelo seu índice de posição para ser jogada. Caso o jogador 
 escolha uma carta inválida ele será solicitado novamente, até que escolha uma carta válida.
 
-##Regra do Jogo
+## Regra do Jogo
 
 O objetivo do jogo é acabar com as cartas em sua mão. Quem descartar todas as cartas primeiro vence. Uma carta pode ser 
 colocada na pilha se tiver a mesma cor, o mesmo valor da última carta da pilha, ou for uma carta especial.
 
 ##Cartas de Ação
 
-######**Cartas de Ação com Cores**
+###### **Cartas de Ação com Cores**
 
 **PULAR**: Essa carta pula a vez do jogador seguinte, então se os jogadores A, B e C estão jogando (nessa ordem) e o A usa uma 
 carta PULAR, o próximo jogador será o C. No caso de haverem apenas dois jogadores, essa carta tem o efeito de voltar a jogada 
@@ -42,7 +42,7 @@ sendo que o atual será isento do efeito da carta. Se o jogador seguinte também
 jogá-lo, fazendo o seu próximo comer 6 cartas e assim por diante. Ou seja, o efeito da carta é cumulativo. O jogador que sofrer o 
 efeito da carta perde a vez.
 
-######**Cartas Especiais**
+###### **Cartas Especiais**
 
 **COMPRA 4**: Essa carta tem o efeito de fazer o jogador seguinte comprar quatro cartas do baralho e de possibilitar ao jogador 
 que a usou a escolha da cor da próxima carta a ser jogada. Caso o jogador receba uma carta COMPRA 4 e tenha outra na sua mão, 
