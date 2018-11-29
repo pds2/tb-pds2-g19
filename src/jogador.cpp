@@ -6,34 +6,35 @@
 #include "baralho.h"
 
 	//CONSTRUTOR E DESTRUTOR
+	bool Jogador::print_bots = false;
 
 	Jogador::Jogador(){}
-	
+
 	Jogador::Jogador(std::string nome){
 		_nome = nome;
 	}
-	
+
 	Jogador::~Jogador(){
 		while(!_mao.empty()){
 			delete _mao[_mao.size() - 1];
 			_mao.pop_back();
 		}
 	}
-	
+
 	//METODOS
-	
+
 	std::string Jogador::get_nome() const{
 		return _nome;
 	}
-	
+
 	void Jogador::set_nome(std::string nome){
 		_nome = nome;
 	}
-	
+
 	int Jogador::num_cartas() const{
 		return _mao.size();
 	}
-	
+
 	void Jogador::compra_carta(Baralho &baralho,int n){
 		if(baralho.get_tamanho() >= n ){
 			for (int i = 0 ; i < n;i++ ){
@@ -41,8 +42,8 @@
 				baralho.remove_fim();
 			}
 		}
-		else 
-			std::cout<<"Acabaram as cartas do baralho e nao foi possivel comprar " <<std::endl; 
+		else
+			std::cout<<"Acabaram as cartas do baralho e nao foi possivel comprar " <<std::endl;
 	}
 
 	Carta* Jogador::jogada (Carta *atual){
@@ -84,7 +85,7 @@
 		}
 		std::cout <<std::endl;
 	}
-	
+
 	void Jogador::print_mao(char valor) const	{
 		int tam = this->num_cartas();
 		std::cout << _nome << " : "<< std::endl;
@@ -97,7 +98,7 @@
 		}
 		std::cout <<std::endl;
 	}
-	
+
 	int Jogador::cartas_jogaveis(Carta *atual) const{
 		//retorna a quantidade de cartas jogaveis pelo jogador tendo em base a carta jogada pelo ultimo jogador
 		int n_cartas_jogaveis = 0;
@@ -108,7 +109,7 @@
 		}
 		return n_cartas_jogaveis;
 	}
-	
+
 	int Jogador::qtd_de_carta(char valor) const{
 		int  cnt= 0;
 		for (int i = 0;i < this->num_cartas();i++){
@@ -118,7 +119,7 @@
 		}
 		return cnt;
 	}
-	
+
 	Carta* Jogador::rebate(char valor){
 		Carta value('r',valor);
 		int pos = 0;
@@ -145,7 +146,7 @@
 		_mao.erase(_mao.begin() + pos);
 		return to_return;
 	}
-	
+
 	void Jogador::escolhe_cor(Carta *escolhida){
 		char cor;
 		if (escolhida->get_cor() == ESPECIAL){
@@ -166,7 +167,7 @@
 			std::cout << "Programador : Tal carta nao pode mudar de cor durante a partida"<<std::endl;
 		}
 	}
-	
+
 	bool Jogador::vai_jogar(){
 		char jogador_n_quer_jogar;
 		std::cout << "Vc quer jogar('j') ou pular('p')?\n";
@@ -180,6 +181,7 @@
 			std::cin >> jogador_n_quer_jogar;
 		}
 		if(jogador_n_quer_jogar=='p')return false;
-		else if(jogador_n_quer_jogar=='j')return true;
-		else return false;
+		if(jogador_n_quer_jogar=='j')return true;
+		return false;
+		
 	}
