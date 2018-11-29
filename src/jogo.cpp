@@ -9,17 +9,19 @@
 #include "bot.h"
 #include "excecoes.h"
 
+
 #define MAO_INICIAL 7
 #define MAX_NAME 80
 #define MAX_PLAYERS 10
-#define MIN_PLAYERS 2
 
 	//CONSTRUTOR E DESTRUTOR
 
 	Jogo::Jogo(){
 		this->_baralho = new Baralho;
+		_baralho->embaralhar();
 		this->_sentido = 1;
 		this->_jogador_atual = 0;
+		char show_bots;
 
 		std::cout<<std::endl;
 		bool fail_first_cin = false,fail_second_cin = false;
@@ -30,9 +32,9 @@
 				std::cin.clear();
 				std::cin.ignore(INT_MAX,'\n');
 				fail_first_cin = true;
-				std::cout << "Valor invalido para o numero de jogadores" << std::endl;
+				std::cout << "Valor nao valido para o numero de jogadores" << std::endl;
 				continue;
-				
+
 			}
 			else {fail_first_cin = false;}
 			std::cout << "Digite o numero de bots : " <<std::endl;
@@ -41,22 +43,35 @@
 				std::cin.clear();
 				std::cin.ignore(INT_MAX,'\n');
 				fail_second_cin = true;
-				std::cout << "Valor invalido para o numero de bots" << std::endl;
+				std::cout << "Valor nao valido para o numero de bots" << std::endl;
 				continue;
-				
+
 			}
 			else {fail_second_cin = false;}
 
-			if((this->_n_jogadores + this->_n_bots) < MIN_PLAYERS || (this->_n_jogadores + this->_n_bots) > MAX_PLAYERS)
+			if((this->_n_jogadores + this->_n_bots) < 2 || (this->_n_jogadores + this->_n_bots) > 10)
 				std::cout << "O jogo deve ter de 2 a 10 jogadores e bots, escolha novos valores" << std::endl;
-			
-		}while((this->_n_jogadores + this->_n_bots ) < MIN_PLAYERS || (this->_n_jogadores + this->_n_bots) > MAX_PLAYERS || fail_first_cin || fail_second_cin);
+
+		}while((this->_n_jogadores + this->_n_bots ) < 2 || (this->_n_jogadores + this->_n_bots) > 10 || fail_first_cin || fail_second_cin);
 
 		this->inicializa_jogadores();
-		
+
 		_baralho->retira_especial_do_topo();
 		_pilha_de_cartas.push_back(_baralho->get_ultima_carta());
 		_baralho->remove_fim();
+    if(_n_bots>0){
+		  std::cout<<"Vc quer ver a mao dos bots? (s ou n)\n";
+      Jogador* ultimo_bot=_jogadores[_n_bots+_n_jogadores-1];
+      do{std::cout<<"Sim = s  Nao = n\n";
+        std::cin>>show_bots;
+        if(std::cin.fail()){
+          std::cin.clear();
+          std::cin.ignore(INT_MAX,'\n');
+        }
+      }while(show_bots!='s'&&show_bots!='n');
+      if(show_bots=='s')ultimo_bot->print_bots = true;
+      if(show_bots=='n')ultimo_bot->print_bots = false;
+    }
 		if(_n_bots>=2)this->randomizar_jogadores();
 	}
 
@@ -71,29 +86,29 @@
 		 }
 		delete _baralho;
 	}
-	
+
 	//METODOS
-	
+
 	int Jogo::get_tamanho() const{
 		return _pilha_de_cartas.size();
 	}
-	
+
 	int Jogo::get_sentido() const{
 		return _sentido;
 	}
-	
+
 	int Jogo::get_jogador_atual() const{
 		return _jogador_atual;
 	}
-	
+
 	int Jogo::get_n_jogadores() const{
 		return _n_jogadores;
 	}
-	
+
 	Carta* Jogo::get_carta_atual() const{
 		return _pilha_de_cartas.back();
 	}
-	
+
 	Jogador* Jogo::get_jogador(int n) const{
 		return _jogadores[n];
 	}
@@ -113,23 +128,21 @@
 
 		if (_jogadores[ _jogador_atual ] ->cartas_jogaveis(carta_atual) == 0 ){
 			std::cout << std::endl << "O jogador " << _jogadores[ _jogador_atual ]->get_nome() <<" nao tem cartas jogaveis e teve que comprar uma\n " << std::endl;
-			_jogadores[ _jogador_atual ]->compra_carta(*_baralho);			
+			_jogadores[ _jogador_atual ]->compra_carta(*_baralho);
 			if (_jogadores[ _jogador_atual ] ->cartas_jogaveis(carta_atual) != 0 )
 				return rodada();
 			this->passa_rodada();
 			return 1;
 		}
 		else if (carta_atual->get_valor() == COMPRA_2 && _jogadores[this->_jogador_atual]->qtd_de_carta(COMPRA_2) > 0 && carta_atual->get_jogador_alvo() == _jogador_atual){
-			_jogadores[_jogador_atual]->print_mao();
-			std::cout<<"Está vindo um sequencia de "<< this->cnt_de_carta(COMPRA_2)<<" +2 em vc, vc pode rebater com um compra 2(jogando) ou vc pode comprar "<< 2*this->cnt_de_carta(COMPRA_2) <<" cartas e perder a vez(pulando)"<<std::endl;
+			std::cout<<"Esta vindo um sequencia de "<< this->cnt_de_carta(COMPRA_2)<<" +2 em vc, vc pode rebater com um compra 2(jogando) ou vc pode comprar "<< 2*this->cnt_de_carta(COMPRA_2) <<" cartas e perder a vez(pulando)"<<std::endl;
 			_jogadores[_jogador_atual]->print_mao(COMPRA_2);
 			if(!_jogadores[_jogador_atual]->vai_jogar())
 				return this->efeito_compra(COMPRA_2,_jogador_atual);
         	escolhida =_jogadores[_jogador_atual]->rebate(COMPRA_2);
 		}
 		else if (carta_atual->get_valor() == COMPRA_4 && _jogadores[this->_jogador_atual]->qtd_de_carta(COMPRA_4) > 0 && carta_atual->get_jogador_alvo() == _jogador_atual){
-			_jogadores[_jogador_atual]->print_mao(); 
-			std::cout<<"Está vindo um sequencia de "<< this->cnt_de_carta(COMPRA_4) <<" +4 em vc, vc pode rebater com o seu compra 4(jogando) ou vc pode comprar "<< 4*this->cnt_de_carta(COMPRA_2) <<" cartas e perder a vez(pulando)"<<std::endl;
+			std::cout<<"Esta vindo um sequencia de "<< this->cnt_de_carta(COMPRA_4) <<" +4 em vc, vc pode rebater com o seu compra 4(jogando) ou vc pode comprar "<< 4*this->cnt_de_carta(COMPRA_2) <<" cartas e perder a vez(pulando)"<<std::endl;
 			_jogadores[_jogador_atual]->print_mao(COMPRA_4);
 			if(!_jogadores[_jogador_atual]->vai_jogar())
 				return this->efeito_compra(COMPRA_4,_jogador_atual);
@@ -156,7 +169,7 @@
 			this->efeitos_de_carta(escolhida);
 			this->passa_rodada();
 			return 1;
-		}		
+		}
 		else{
 
 			std::cout << "Programador : Tal carta nao pode ser jogada" << std::endl;
@@ -164,7 +177,7 @@
 			return 0;
 		}
 	}
-	
+
 	void Jogo::efeitos_de_carta(Carta *escolhida){
 
 		int proximo_jogador = (this->_jogador_atual + this->_sentido) % (this->_n_jogadores + this->_n_bots);
@@ -204,7 +217,7 @@
 	 				break;
 		}
 	}
-	
+
 	int Jogo::cnt_de_carta(char valor){
 		std::list<Carta*>::reverse_iterator rit = _pilha_de_cartas.rbegin();
 		int contador = 0;
@@ -220,7 +233,7 @@
 		if (this->_jogador_atual < 0)
 			this->_jogador_atual += (this->_n_jogadores + this->_n_bots);
 	}
-	
+
 	void Jogo::repoe_baralho(){
 		std::cout<<"Acabaram as cartas e a pilha foi reembaralhada" <<std::endl;
 		Carta *carta_atual =  _pilha_de_cartas.back();
@@ -235,7 +248,7 @@
 		_baralho->embaralhar();
 		_pilha_de_cartas.push_back(carta_atual);
 	}
-	
+
 	void Jogo::inicia_jogo(){
 		int i = 1;
 		while (this->rodada()){
@@ -244,7 +257,7 @@
 		}
 		std::cout << "\n\n-------------------------- fim de jogo. O jogo acabou na rodada " << i <<  " --------------------------\n\n" <<std::endl;
 	}
-	
+
 	void Jogo::randomizar_jogadores(){
 		srand (time(NULL));
 		int j = 0;
@@ -261,7 +274,7 @@
 		}
 		std::cout << std::endl;
 	}
-	
+
 	void Jogo::inicializa_jogadores(){
 		std::string nome_jogador;
 		std::cin.ignore(INT_MAX,'\n');
@@ -273,14 +286,14 @@
 			novo_jogador->print_mao();
 			this->_jogadores.push_back(novo_jogador);
 			std::cin.clear();
-		}	
+		}
 		for(int i = 0; i < _n_bots; i++ ){
 			Bot  *novo_bot = new Bot(this);
 			novo_bot->compra_carta(*_baralho,MAO_INICIAL);
 			this->_jogadores.push_back(novo_bot);
 		}
 	}
-	
+
 	int Jogo::efeito_compra(char valor,int jogador){
 		if (valor == COMPRA_2){
 			int n_compra_2 = this->cnt_de_carta(COMPRA_2);
@@ -290,7 +303,7 @@
 			std::cout<<"\n\nO jogador "<<_jogadores[jogador]->get_nome()<< " comprou "<< n_compra_2*2 <<" cartas e perdeu a vez\n\n";
 		}
 		if (valor == COMPRA_4){
-			int n_compra_4 = this->cnt_de_carta(COMPRA_4);        
+			int n_compra_4 = this->cnt_de_carta(COMPRA_4);
 			if(n_compra_4*4 > _baralho->get_tamanho())
 				this->repoe_baralho();
 			this->_jogadores[jogador]->compra_carta(*_baralho,4*n_compra_4);
@@ -307,6 +320,6 @@
 				++rit;
 			}
 		}
-		
+
 		return 1;
 	}
