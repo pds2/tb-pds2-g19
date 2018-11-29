@@ -25,7 +25,7 @@ escolha uma carta inválida ele será solicitado novamente, até que escolha uma
 O objetivo do jogo é acabar com as cartas em sua mão. Quem descartar todas as cartas primeiro vence. Uma carta pode ser 
 colocada na pilha se tiver a mesma cor, o mesmo valor da última carta da pilha, ou for uma carta especial.
 
-##Cartas de Ação
+## Cartas de Ação
 
 ###### **Cartas de Ação com Cores**
 
