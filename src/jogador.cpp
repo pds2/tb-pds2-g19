@@ -183,5 +183,3 @@
 		else if(jogador_n_quer_jogar=='j')return true;
 		else return false;
 	}
-
-

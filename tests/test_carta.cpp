@@ -41,6 +41,7 @@
 	TEST_CASE("Testando função set_cor() e tira_cor_especial()"){
 		
 		Carta a(ESPECIAL, CORINGA);
+		CHECK(a.get_cor() == ESPECIAL);
 		
 		a.set_cor(BLUE);
 		CHECK(a.get_cor() == BLUE);
