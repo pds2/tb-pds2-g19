@@ -35,7 +35,7 @@ para o jogador que a usou, então se A e B estão jogando e A usa a carta PULAR,
 **REVERTER**: Carta que reverte o sentido do jogo. Se os jogadores A, B e C estão jogando nessa ordem e o C usa uma carta 
 REVERTER, o próximo jogador será o B e a ordem passará a ser C, B, A. No caso de haverem apenas dois jogadores, essa carta tem 
 o efeito de voltar a jogada para o jogador que a usou, então se A e B estão jogando e A usa a carta REVERTER, o próximo jogador 
-será A de novo. 
+será A de novo.
 **COMPRA 2**: Essa carta tem o efeito de fazer o jogador seguinte comprar duas cartas do baralho. Caso o jogador receba uma 
 carta COMPRA 2 e tenha outra na sua mão (de qualquer cor), ele pode jogá-la e assim, o jogador seguinte terá que comprar 4
 cartas, sendo que o atual será isento do efeito da carta. Se o jogador seguinte também possuir um COMPRA 2 em sua mão, ele
