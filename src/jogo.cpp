@@ -13,6 +13,7 @@
 #define MAO_INICIAL 7
 #define MAX_NAME 80
 #define MAX_PLAYERS 10
+#define MIN_PLAYERS 2
 
 	//CONSTRUTOR E DESTRUTOR
 
@@ -49,10 +50,10 @@
 			}
 			else {fail_second_cin = false;}
 
-			if((this->_n_jogadores + this->_n_bots) < 2 || (this->_n_jogadores + this->_n_bots) > 10)
+			if((this->_n_jogadores + this->_n_bots) < MIN_PLAYERS || (this->_n_jogadores + this->_n_bots) > MAX_PLAYERS)
 				std::cout << "O jogo deve ter de 2 a 10 jogadores e bots, escolha novos valores" << std::endl;
 
-		}while((this->_n_jogadores + this->_n_bots ) < 2 || (this->_n_jogadores + this->_n_bots) > 10 || fail_first_cin || fail_second_cin);
+		}while((this->_n_jogadores + this->_n_bots ) < MIN_PLAYERS || (this->_n_jogadores + this->_n_bots) > MAX_PLAYERS || fail_first_cin || fail_second_cin);
 
 		this->inicializa_jogadores();
 
