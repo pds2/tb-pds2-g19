@@ -9,6 +9,7 @@
 #define N_VALORES 10
 #define N_ESPECIAIS_COLORIDAS 3
 #define N_ESPECIAIS 4
+#define N_ESPECIAIS_S_COR 2
 
 	//CONSTRUTOR E DESTRUTOR
 	
@@ -17,7 +18,7 @@
 
 		char cores[N_CORES] = { RED , YELLOW , BLUE , GREEN };
 		char especiais_com_cores[N_ESPECIAIS_COLORIDAS] = { PULAR , REVERTER , COMPRA_2 };
-		char especiais[2] = { COMPRA_4 , CORINGA };
+		char especiais[N_ESPECIAIS_S_COR] = { COMPRA_4 , CORINGA };
 		//incliuindo cartas com cores 
 		for (int i = 0; i < N_CORES ;i++){
 			//incluindo valores de 0 a 9
@@ -43,7 +44,7 @@
 			}
 		}
 		//incluindo 8 especiais 4x COMPRA_4 e 4x CORINGA 
-		for (int i = 0; i < 2;i++){
+		for (int i = 0; i < N_ESPECIAIS_S_COR;i++){
 			for(int j = 0; j < N_ESPECIAIS;j++){
 				ptr1 = new Carta(ESPECIAL,especiais[i]);
 				_baralho.push_back(ptr1);
