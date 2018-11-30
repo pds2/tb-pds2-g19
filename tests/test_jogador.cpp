@@ -32,7 +32,7 @@
         Jogador b("Joao");
         Carta *c = new Carta(RED, '0');
 
-        b.compra_carta(*a, MAO_INICIAL);
+        b.compra_carta(a, MAO_INICIAL);
   
         CHECK(b.cartas_jogaveis(c) == MAO_INICIAL);
     }
